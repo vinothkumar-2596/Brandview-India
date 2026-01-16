@@ -1,10 +1,17 @@
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
-import BlogCard from '@/components/BlogCard';
-import CTASection from '@/components/CTASection';
-import { blogPosts } from '@/content/blog';
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Calendar,
+  User,
+  Search,
+  Facebook,
+  Twitter,
+  Linkedin,
+  ArrowRight,
+} from "lucide-react";
+import CTASection from "@/components/CTASection";
+import { blogPosts } from "@/content/blog";
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -19,117 +26,201 @@ export default function BlogDetailPage({ params }) {
     notFound();
   }
 
-  const relatedPosts = blogPosts
-    .filter((p) => p.slug !== post.slug && p.category === post.category)
-    .slice(0, 3);
+  const recentPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const categories = Array.from(new Set(blogPosts.map((p) => p.category)));
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-8 sm:pt-40 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <Link
-            href="/blog"
-            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
-          </Link>
-          <div className="flex flex-wrap items-center gap-4 mb-6">
-            <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-              {post.category}
-            </span>
-            <span className="flex items-center text-muted-foreground text-sm">
-              <Calendar className="h-4 w-4 mr-1.5" />
-              {formatDate(post.date)}
-            </span>
-            <span className="flex items-center text-muted-foreground text-sm">
-              <User className="h-4 w-4 mr-1.5" />
-              {post.author}
-            </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6">
-            {post.title}
-          </h1>
-          <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
-            {post.excerpt}
-          </p>
-        </div>
-      </section>
-
-      {/* Cover Image */}
-      <section className="py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="aspect-video relative rounded-2xl overflow-hidden">
-            <Image
-              src={post.coverImage}
-              alt={post.title}
-              fill
-              className="object-cover"
-            />
+      <section className="pt-28 pb-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 px-6 py-10 sm:px-10 sm:py-12 text-white text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-white/70">
+              {post.author} / {formatDate(post.date)}
+            </p>
+            <h1 className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-semibold">
+              {post.title}
+            </h1>
           </div>
         </div>
       </section>
 
-      {/* Content */}
-      <section className="py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-invert prose-lg max-w-none">
-            {post.contentBlocks.map((block, index) => {
-              if (block.type === 'heading') {
-                return (
-                  <h2 key={index} className="text-2xl sm:text-3xl font-semibold mt-12 mb-4">
-                    {block.content}
-                  </h2>
-                );
-              }
-              return (
-                <p key={index} className="text-muted-foreground leading-relaxed mb-6">
-                  {block.content}
+      <section className="pb-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[2fr_1fr]">
+            <article>
+              <div className="rounded-3xl overflow-hidden border border-slate-100 bg-white shadow-sm">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
+                {post.contentBlocks.map((block, index) => {
+                  if (block.type === "heading") {
+                    return (
+                      <h2
+                        key={index}
+                        className="text-xl sm:text-2xl font-semibold text-slate-900"
+                      >
+                        {block.content}
+                      </h2>
+                    );
+                  }
+                  return (
+                    <p key={index} className="text-base">
+                      {block.content}
+                    </p>
+                  );
+                })}
+              </div>
+
+              <div className="mt-10 rounded-2xl bg-slate-50 px-6 py-5 border border-slate-200">
+                <p className="text-lg font-semibold text-slate-900">
+                  "Great things in business are never done by one person. They're done by a team
+                  of people."
                 </p>
-              );
-            })}
-          </div>
+                <p className="mt-2 text-xs uppercase tracking-[0.3em] text-slate-500">
+                  Steve Jobs
+                </p>
+              </div>
 
-          {/* Author Box */}
-          <div className="mt-16 p-8 rounded-2xl border border-white/10 bg-card">
-            <div className="flex items-center">
-              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary text-2xl font-semibold">
-                {post.author.charAt(0)}
+              <div className="mt-10 flex flex-wrap items-center gap-4 text-sm text-slate-500">
+                <span className="rounded-full border border-slate-200 px-3 py-1">
+                  Tags: {post.category}
+                </span>
+                <div className="flex items-center gap-3">
+                  <span>Share this post:</span>
+                  <a href="#" className="text-slate-500 hover:text-slate-900">
+                    <Facebook className="h-4 w-4" />
+                  </a>
+                  <a href="#" className="text-slate-500 hover:text-slate-900">
+                    <Twitter className="h-4 w-4" />
+                  </a>
+                  <a href="#" className="text-slate-500 hover:text-slate-900">
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
-              <div className="ml-4">
-                <p className="font-semibold text-lg">{post.author}</p>
-                <p className="text-muted-foreground">Content Writer at Zesty</p>
+
+              <div className="mt-12">
+                <h3 className="text-xl font-semibold text-slate-900">Leave a Reply</h3>
+                <p className="mt-2 text-sm text-slate-500">
+                  Your email address will not be published. Required fields are marked *
+                </p>
+                <form className="mt-6 grid gap-4">
+                  <textarea
+                    rows={4}
+                    placeholder="Comment"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                  />
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <input
+                      type="text"
+                      placeholder="Name *"
+                      className="w-full rounded-full border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email *"
+                      className="w-full rounded-full border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Website"
+                    className="w-full rounded-full border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                  />
+                  <button
+                    type="button"
+                    className="w-fit rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white"
+                  >
+                    Post Comment
+                  </button>
+                </form>
               </div>
-            </div>
+            </article>
+
+            <aside className="space-y-6">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <input
+                    type="search"
+                    placeholder="Search..."
+                    className="w-full rounded-full border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5">
+                <h3 className="text-lg font-semibold text-slate-900">Recent Blog</h3>
+                <div className="mt-4 space-y-4 text-sm text-slate-700">
+                  {recentPosts.map((recent) => (
+                    <Link
+                      key={recent.slug}
+                      href={`/blog/${recent.slug}`}
+                      className="group flex items-start gap-3"
+                    >
+                      <span className="text-primary">→</span>
+                      <span className="group-hover:text-slate-900">{recent.title}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5">
+                <h3 className="text-lg font-semibold text-slate-900">Category</h3>
+                <div className="mt-4 space-y-3 text-sm text-slate-700">
+                  {categories.map((category) => (
+                    <div key={category} className="flex items-center gap-2">
+                      <span className="text-primary">•</span>
+                      <span>{category}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 px-6 py-6 text-white">
+                <h3 className="text-lg font-semibold">Have Any Question?</h3>
+                <p className="mt-2 text-sm text-white/70">
+                  We are ready to listen and help craft a creative solution for you.
+                </p>
+                <div className="mt-4 space-y-2 text-sm text-white/80">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4" />
+                    <span>support@zesty.com</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    <span>(555) 987-6543</span>
+                  </div>
+                </div>
+                <Link
+                  href="/contact"
+                  className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-semibold text-slate-900"
+                >
+                  Contact Us
+                  <ArrowRight className="h-3 w-3" />
+                </Link>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      {/* Related Posts */}
-      {relatedPosts.length > 0 && (
-        <section className="py-16 sm:py-20 bg-card">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-semibold mb-8">Related Articles</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {relatedPosts.map((relatedPost) => (
-                <BlogCard key={relatedPost.slug} post={relatedPost} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* CTA */}
       <CTASection />
     </>
   );

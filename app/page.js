@@ -1,271 +1,441 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Sparkles, Users, Award, Briefcase } from 'lucide-react';
-import SectionHeading from '@/components/SectionHeading';
-import ServiceCard from '@/components/ServiceCard';
-import ProjectCard from '@/components/ProjectCard';
-import TestimonialCard from '@/components/TestimonialCard';
-import BlogCard from '@/components/BlogCard';
-import CTASection from '@/components/CTASection';
-import { services } from '@/content/services';
-import { projects } from '@/content/projects';
-import { blogPosts } from '@/content/blog';
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  ArrowRight,
+  Award,
+  Trophy,
+  CheckCircle2,
+} from "lucide-react";
+import CTASection from "@/components/CTASection";
+import { services } from "@/content/services";
+import { projects } from "@/content/projects";
+import { blogPosts } from "@/content/blog";
 
 const testimonials = [
   {
-    quote: "Zesty transformed our brand completely. Their creativity and attention to detail exceeded all expectations. The results speak for themselves.",
+    quote:
+      "Zesty transformed our brand completely. Their creativity and attention to detail exceeded all expectations. The results speak for themselves.",
     name: "Jennifer Adams",
-    role: "CEO, TechStart Inc."
+    role: "CEO, TechStart Inc.",
   },
   {
-    quote: "Working with Zesty was a game-changer for our business. They don't just deliver projects, they deliver results that matter.",
+    quote:
+      "Working with Zesty was a game-changer for our business. They don't just deliver projects, they deliver results that matter.",
     name: "Michael Chen",
-    role: "Founder, Verde Fashion"
+    role: "Founder, Verde Fashion",
   },
   {
-    quote: "The team's professionalism and creative vision helped us stand out in a crowded market. Highly recommend their services.",
+    quote:
+      "The team's professionalism and creative vision helped us stand out in a crowded market. Highly recommend their services.",
     name: "Sarah Williams",
-    role: "Marketing Director, Pulse Health"
-  }
+    role: "Marketing Director, Pulse Health",
+  },
 ];
 
-const clientLogos = ['Acme Corp', 'TechVista', 'Nexus Labs', 'Quantum AI', 'Vertex Inc', 'Prism Co'];
+const clientLogos = [
+  "Acme Corp",
+  "TechVista",
+  "Nexus Labs",
+  "Quantum AI",
+  "Vertex Inc",
+  "Prism Co",
+];
 
 const processSteps = [
-  { number: '01', title: 'Discover', description: 'We dive deep into your brand, goals, and audience to understand the full picture.' },
-  { number: '02', title: 'Design', description: 'Our team crafts beautiful, purposeful designs that align with your vision.' },
-  { number: '03', title: 'Develop', description: 'We bring designs to life with clean, scalable, and performant code.' },
-  { number: '04', title: 'Launch', description: 'We deploy, optimize, and ensure everything runs smoothly from day one.' }
+  {
+    number: "01",
+    title: "Discovery & Strategy",
+    description:
+      "We dive deep into your brand, goals, and audience to craft a clear strategic roadmap.",
+  },
+  {
+    number: "02",
+    title: "Design & Identity",
+    description:
+      "Our team creates refined visual systems and experiences that feel premium and purposeful.",
+  },
+  {
+    number: "03",
+    title: "Build & Launch",
+    description:
+      "We bring designs to life with clean, scalable builds and launch with confidence.",
+  },
+  {
+    number: "04",
+    title: "Scale & Optimize",
+    description:
+      "Post-launch, we iterate, optimize, and help your brand grow with measurable impact.",
+  },
 ];
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center pt-20 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg" />
-        <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-                <Sparkles className="h-4 w-4 mr-2" />
-                Award-Winning Creative Agency
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
-                We Create Digital
-                <span className="text-gradient"> Experiences</span> That Matter
+      <section
+        id="home"
+        className="bg-white pb-16 pt-28 sm:pb-20 sm:pt-32"
+      >
+        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+          <div className="flex flex-col gap-12">
+            <div className="flex flex-col items-center text-center">
+              <h1 className="mt-6 text-5xl font-semibold text-slate-900 sm:text-6xl lg:text-[96px] lg:leading-[1.05]">
+                Zesty® Studio
               </h1>
-              <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed mb-8">
-                Transform your brand with our expert design and development services. We help ambitious companies build remarkable digital products.
+              <p className="mt-6 max-w-2xl text-base text-slate-600 sm:text-lg">
+                We build premium brand experiences, digital platforms, and campaigns that
+                connect ambitious brands with their audience.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/contact">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 text-lg">
-                    Start a Project
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link href="/works">
-                  <Button variant="outline" className="rounded-full px-8 py-6 text-lg border-white/20 hover:bg-white/5">
-                    View Works
-                  </Button>
-                </Link>
-              </div>
             </div>
-            <div className="relative hidden lg:block">
-              <div className="aspect-square relative">
-                <Image
-                  src="https://images.unsplash.com/photo-1557682268-e3955ed5d83f?w=600&h=600&fit=crop"
-                  alt="Creative Design"
-                  fill
-                  className="object-cover rounded-3xl"
-                  priority
-                />
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-primary/30 to-transparent" />
-              </div>
-            </div>
-          </div>
 
-          {/* Trust Row */}
-          <div className="mt-16 pt-16 border-t border-white/10">
-            <p className="text-muted-foreground text-sm text-center mb-8">Trusted by innovative companies</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-              {clientLogos.map((logo) => (
-                <span key={logo} className="text-muted-foreground/50 text-lg font-semibold">
-                  {logo}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Preview */}
-      <section className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            label="Our Services"
-            title="Crafting Digital Excellence"
-            description="We offer comprehensive creative services to help your brand thrive in the digital landscape."
-          />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <ServiceCard key={service.id} service={service} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Preview */}
-      <section className="py-16 sm:py-20 bg-card">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <div className="aspect-[4/3] relative rounded-2xl overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1560714443-d7c7a6d62ea4?w=800&h=600&fit=crop"
-                  alt="Our Team"
-                  fill
-                  className="object-cover"
-                />
+            <div className="rounded-[36px] bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 px-6 py-10 text-white shadow-2xl sm:px-10 sm:py-12">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {["Branding", "Web Design", "Digital Marketing", "Social Media"].map((label) => (
+                  <span
+                    key={label}
+                    className="flex w-full items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-2 text-xs font-semibold text-white/80"
+                  >
+                    {label}
+                  </span>
+                ))}
               </div>
-              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary/20 rounded-2xl -z-10" />
-            </div>
-            <div>
-              <span className="text-primary text-sm font-medium tracking-wider uppercase">About Us</span>
-              <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mt-4 mb-6">
-                We're a Team of Creative Problem Solvers
-              </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                With over a decade of experience, we've helped hundreds of brands achieve their digital potential. Our passion for design and technology drives us to create exceptional experiences.
-              </p>
-              <div className="grid grid-cols-3 gap-6 mb-8">
+              <div className="mt-12 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div>
-                  <div className="flex items-center text-3xl font-bold text-gradient">
-                    <Briefcase className="h-6 w-6 text-primary mr-2" />
-                    200+
-                  </div>
-                  <p className="text-muted-foreground text-sm mt-1">Projects</p>
+                  <p className="text-xs uppercase tracking-[0.3em] text-white/70">
+                    Welcome to Zesty
+                  </p>
+                  <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
+                    We Build Brands That
+                    <span className="block">Break the Mold.</span>
+                  </h2>
                 </div>
-                <div>
-                  <div className="flex items-center text-3xl font-bold text-gradient">
-                    <Users className="h-6 w-6 text-primary mr-2" />
-                    50+
-                  </div>
-                  <p className="text-muted-foreground text-sm mt-1">Clients</p>
-                </div>
-                <div>
-                  <div className="flex items-center text-3xl font-bold text-gradient">
-                    <Award className="h-6 w-6 text-primary mr-2" />
-                    15+
-                  </div>
-                  <p className="text-muted-foreground text-sm mt-1">Awards</p>
-                </div>
-              </div>
-              <Link href="/about">
-                <Button variant="outline" className="rounded-full px-6 border-white/20 hover:bg-white/5">
-                  Learn More About Us
+                <Button className="rounded-full bg-white px-6 text-slate-900 hover:bg-white/90">
+                  Start a Project
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </Link>
+              </div>
+              <div className="mt-10 flex flex-wrap items-center gap-6 text-xs text-white/70">
+                {clientLogos.map((logo) => (
+                  <span key={logo} className="uppercase tracking-[0.2em]">
+                    {logo}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] items-center">
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-500">About</p>
+                <h3 className="mt-4 text-2xl sm:text-3xl font-semibold text-slate-900">
+                  We Create Strategic, Elegant Digital Experiences
+                </h3>
+                <p className="mt-4 text-slate-600">
+                  At Zesty Studio, we focus on transforming ideas into premium digital
+                  experiences. Our work combines clarity, storytelling, and performance.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-4">
+                  <div className="rounded-2xl bg-white px-5 py-4 shadow-sm border border-slate-100">
+                    <p className="text-xl font-semibold text-slate-900">25K+</p>
+                    <p className="text-xs text-slate-500">Audience Reached</p>
+                  </div>
+                  <div className="rounded-2xl bg-white px-5 py-4 shadow-sm border border-slate-100">
+                    <p className="text-xl font-semibold text-slate-900">18+</p>
+                    <p className="text-xs text-slate-500">Years of Experience</p>
+                  </div>
+                  <div className="rounded-2xl bg-white px-5 py-4 shadow-sm border border-slate-100">
+                    <p className="text-xl font-semibold text-slate-900">99%</p>
+                    <p className="text-xs text-slate-500">Client Satisfaction</p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="rounded-3xl overflow-hidden border border-slate-100 bg-white shadow-lg">
+                  <Image
+                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1000&h=750&fit=crop"
+                    alt="Studio team"
+                    width={720}
+                    height={520}
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Works */}
-      <section className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12">
-            <SectionHeading
-              label="Our Works"
-              title="Featured Projects"
-              description="Explore our portfolio of successful projects that have helped brands grow."
-              centered={false}
-            />
-            <Link href="/works" className="mt-4 sm:mt-0">
-              <Button variant="outline" className="rounded-full px-6 border-white/20 hover:bg-white/5">
-                View All Works
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+      <section id="projects" className="py-16 sm:py-20">
+        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                Selected Projects
+              </p>
+              <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
+                Our Latest Work
+              </h2>
+            </div>
+            <Link
+              href="/works"
+              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-xs font-semibold text-white"
+            >
+              View All Works
+              <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.slice(0, 6).map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {projects.slice(0, 3).map((project) => (
+              <article
+                key={project.slug}
+                className="group rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden"
+              >
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={project.coverImage}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
+                    {project.category}
+                  </p>
+                  <h3 className="mt-3 text-xl font-semibold text-slate-900">
+                    {project.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-600">{project.excerpt}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-16 sm:py-20 bg-card">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            label="Our Process"
-            title="How We Work"
-            description="Our proven process ensures every project is delivered with excellence and efficiency."
-          />
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((step, index) => (
-              <div key={step.number} className="relative p-6 rounded-2xl border border-white/10 bg-background">
-                <span className="text-5xl font-bold text-primary/20">{step.number}</span>
-                <h3 className="text-xl font-semibold mt-4 mb-2">{step.title}</h3>
-                <p className="text-muted-foreground">{step.description}</p>
-                {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-[2px] bg-primary/30" />
-                )}
+      <section
+        id="services"
+        className="py-16 sm:py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 text-white"
+      >
+        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+          <div className="text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-white/60">
+              What We Do Best
+            </p>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-semibold">
+              Premium Creative Services
+            </h2>
+          </div>
+          <div className="mt-10 divide-y divide-white/10">
+            {services.map((service, index) => (
+              <div
+                key={service.id}
+                className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-xs text-white/60">{`(${String(
+                    index + 1
+                  ).padStart(2, "0")})`}</span>
+                  <div>
+                    <h3 className="text-xl font-semibold">{service.title}</h3>
+                    <p className="mt-2 text-sm text-white/70">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-xs font-semibold text-white/80 hover:bg-white/10"
+                >
+                  Learn More
+                  <ArrowRight className="h-3 w-3" />
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
       <section className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            label="Testimonials"
-            title="What Our Clients Say"
-            description="Don't just take our word for it. Here's what our clients have to say about working with us."
-          />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} testimonial={testimonial} />
+        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] items-center">
+            <div className="rounded-3xl border border-slate-100 bg-white shadow-sm p-8">
+              <h3 className="text-2xl font-semibold text-slate-900">
+                Why Brands Trust Us
+              </h3>
+              <p className="mt-4 text-slate-600">
+                We combine strategy, premium design, and measurable performance to build
+                brands that win trust and loyalty.
+              </p>
+              <div className="mt-6 space-y-3 text-sm text-slate-600">
+                {[
+                  "Dedicated senior-led teams",
+                  "Transparent timelines and reporting",
+                  "Award-winning creative direction",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-3xl bg-slate-900 text-white p-8">
+              <div className="flex items-center gap-3">
+                <Trophy className="h-6 w-6 text-white/70" />
+                <h4 className="text-lg font-semibold">Award-Winning Work</h4>
+              </div>
+              <p className="mt-3 text-sm text-white/70">
+                Recognized across design, branding, and digital experiences.
+              </p>
+              <div className="mt-6 space-y-4 text-sm text-white/70">
+                {projects.slice(0, 3).map((project) => (
+                  <div key={project.slug} className="flex items-start gap-3">
+                    <Award className="h-4 w-4 text-white/60 mt-0.5" />
+                    <div>
+                      <p className="text-white">{project.title}</p>
+                      <p className="text-xs text-white/60">{project.client}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 flex gap-4 text-xs text-white/70">
+                <div>
+                  <p className="text-xl font-semibold text-white">40+</p>
+                  <p>Industry Awards</p>
+                </div>
+                <div>
+                  <p className="text-xl font-semibold text-white">120+</p>
+                  <p>Launches</p>
+                </div>
+                <div>
+                  <p className="text-xl font-semibold text-white">5x</p>
+                  <p>Client Growth</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 text-white">
+        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+          <div className="text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-white/60">
+              From Start to Finish
+            </p>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-semibold">
+              A Process Built For Scale
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {processSteps.map((step) => (
+              <div
+                key={step.number}
+                className="rounded-2xl border border-white/10 bg-white/5 p-6"
+              >
+                <p className="text-xs text-white/50">{step.number}</p>
+                <h3 className="mt-4 text-lg font-semibold">{step.title}</h3>
+                <p className="mt-2 text-sm text-white/70">{step.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Blog Preview */}
-      <section className="py-16 sm:py-20 bg-card">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12">
-            <SectionHeading
-              label="Our Blog"
-              title="Latest Insights"
-              description="Stay updated with the latest trends, tips, and insights from our team."
-              centered={false}
-            />
-            <Link href="/blog" className="mt-4 sm:mt-0">
-              <Button variant="outline" className="rounded-full px-6 border-white/20 hover:bg-white/5">
-                View All Posts
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+          <div className="text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+              Testimonials
+            </p>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
+              What Our Clients Say
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <div
+                key={testimonial.name}
+                className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm"
+              >
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {testimonial.quote}
+                </p>
+                <div className="mt-6">
+                  <p className="text-sm font-semibold text-slate-900">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-xs text-slate-500">{testimonial.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="blog" className="py-16 sm:py-20">
+        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                Blog & News
+              </p>
+              <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
+                Our Latest Blogs & News
+              </h2>
+            </div>
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-xs font-semibold text-white"
+            >
+              All Blog
+              <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {blogPosts.slice(0, 3).map((post) => (
-              <BlogCard key={post.slug} post={post} />
+              <article
+                key={post.slug}
+                className="rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden"
+              >
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <span className="inline-flex rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-600">
+                    {post.category}
+                  </span>
+                  <h3 className="mt-4 text-lg font-semibold text-slate-900">
+                    {post.title}
+                  </h3>
+                  <p className="mt-2 text-xs text-slate-500">
+                    by {post.author} · {post.date}
+                  </p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <CTASection />
+      <section id="contact">
+        <CTASection />
+      </section>
     </>
   );
 }
+
+
+
+
+
+
+

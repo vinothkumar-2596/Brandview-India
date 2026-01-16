@@ -1,6 +1,13 @@
 import './globals.css';
+import { Plus_Jakarta_Sans } from "next/font/google";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import TrackingBootstrap from '@/components/TrackingBootstrap';
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata = {
   title: 'Zesty | Creative Agency',
@@ -10,7 +17,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className={`${plusJakarta.className} antialiased`}>
+        <TrackingBootstrap />
         <Header />
         <main>{children}</main>
         <Footer />
