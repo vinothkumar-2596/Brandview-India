@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Home, ArrowLeft } from 'lucide-react';
@@ -31,7 +33,7 @@ export default function NotFound() {
           <Button
             variant="outline"
             className="rounded-full px-8 py-6 border-white/20 hover:bg-white/5"
-            onClick={() => typeof window !== 'undefined' && window.history.back()}
+            onClick={() => window.history.back()}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Go Back
