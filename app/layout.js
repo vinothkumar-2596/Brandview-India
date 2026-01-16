@@ -1,16 +1,20 @@
-import './globals.css'
+import './globals.css';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'Next.js MongoDB Template',
-  description: 'A simple template with App Router, MongoDB, and shadcn/ui',
-}
+  title: 'Zesty | Creative Agency',
+  description: 'We craft digital experiences that inspire, engage, and deliver results for ambitious brands.',
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        {children}
+      <body className="antialiased">
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
-  )
+  );
 }
