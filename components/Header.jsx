@@ -70,7 +70,7 @@ export default function Header() {
                 <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-40 py-2 glass-effect rounded-xl shadow-xl">
+                <div className="absolute top-full left-0 mt-2 w-40 py-2 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-xl shadow-2xl">
                   {dropdownLinks.map((link) => (
                     <Link
                       key={link.href}
