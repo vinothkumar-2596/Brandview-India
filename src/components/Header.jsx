@@ -29,7 +29,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-100 bg-white">
       <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center">
-          <span className="text-2xl font-bold text-slate-900">BrandView India</span>
+          <span className="text-2xl font-bold text-slate-900">Zesty®</span>
         </Link>
 
         <nav className="hidden lg:flex items-center space-x-8 text-sm font-medium">

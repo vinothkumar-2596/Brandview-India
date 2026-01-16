@@ -2,29 +2,60 @@
 import { Link } from "react-router-dom";
 import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Award, Trophy, CheckCircle2 } from "lucide-react";
-import { services } from "@/content/services";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Award,
+  Trophy,
+  CheckCircle2,
+  Play,
+  MessageCircleQuestion,
+  PenTool,
+  Monitor,
+  Target,
+} from "lucide-react";
 import { projects } from "@/content/projects";
 import { blogPosts } from "@/content/blog";
 
-const testimonials = [
+const testimonialVideo = {
+  title: "Collaboration in Action",
+  image:
+    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&h=900&fit=crop",
+};
+
+const featuredTestimonial = {
+  quote:
+    "Working with Zesty was a game-changer for our brand. Their creativity and strategic insights transformed our vision into a campaign that truly resonated with our audience. They listened, understood, and delivered beyond expectations.",
+  name: "Max Palmer",
+  role: "Marketing Director",
+  avatar:
+    "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=200&h=200&fit=crop&crop=faces",
+};
+
+const testimonialCards = [
   {
     quote:
-      "BrandView transformed our brand completely. Their creativity and attention to detail exceeded all expectations. The results speak for themselves.",
-    name: "Jennifer Adams",
-    role: "CEO, TechStart Inc.",
+      "The team brought fresh ideas and a level of passion we had not experienced before. They delivered a design that captured our essence perfectly.",
+    name: "Kate Jacobs",
+    role: "Head of Marketing",
+    avatar:
+      "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=200&h=200&fit=crop&crop=faces",
   },
   {
     quote:
-      "Working with BrandView was a game-changer for our business. They don't just deliver projects, they deliver results that matter.",
-    name: "Michael Chen",
-    role: "Founder, Verde Fashion",
+      "From start to finish, communication was clear and collaboration seamless. Their approach helped launch a product that looks amazing and performs even better.",
+    name: "Bud Walker",
+    role: "Brand Manager",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces",
   },
   {
     quote:
-      "The team's professionalism and creative vision helped us stand out in a crowded market. Highly recommend their services.",
-    name: "Sarah Williams",
-    role: "Marketing Director, Pulse Health",
+      "Working with Zesty was a turning point. They reimagined how we tell our story, and every step felt intentional and collaborative.",
+    name: "Lillian Austin",
+    role: "Creative Lead",
+    avatar:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop&crop=faces",
   },
 ];
 
@@ -40,27 +71,54 @@ const clientLogos = [
 const processSteps = [
   {
     number: "01",
-    title: "Discovery & Strategy",
+    title: "Discovery & Briefing",
     description:
-      "We dive deep into your brand, goals, and audience to craft a clear strategic roadmap.",
+      "We begin by understanding your brand, goals, and challenges to set a strong foundation.",
+    icon: MessageCircleQuestion,
   },
   {
     number: "02",
-    title: "Design & Identity",
+    title: "Research",
     description:
-      "Our team creates refined visual systems and experiences that feel premium and purposeful.",
+      "Our team explores market trends, audience insights, and creative opportunities.",
+    icon: PenTool,
   },
   {
     number: "03",
-    title: "Build & Launch",
+    title: "Development",
     description:
-      "We bring designs to life with clean, scalable builds and launch with confidence.",
+      "With strategy in place, we design and build tailored solutions that align with your vision.",
+    icon: Monitor,
   },
   {
     number: "04",
-    title: "Scale & Optimize",
+    title: "Delivery",
     description:
-      "Post-launch, we iterate, optimize, and help your brand grow with measurable impact.",
+      "We finalize the project, ensuring quality results that help your brand grow and stand out.",
+    icon: Target,
+  },
+];
+
+const homeServices = [
+  {
+    title: "Branding & Identity",
+    description:
+      "We craft bold, memorable brand systems that set you apart and build trust.",
+  },
+  {
+    title: "UI/UX Design",
+    description:
+      "User-first experiences that feel intuitive, elegant, and conversion-ready.",
+  },
+  {
+    title: "Content Creation",
+    description:
+      "Strategic content that tells your story and connects with the right audience.",
+  },
+  {
+    title: "Digital Marketing",
+    description:
+      "Data-driven campaigns that grow visibility, engagement, and revenue.",
   },
 ];
 
@@ -92,7 +150,7 @@ export default function Home() {
           <div className="flex flex-col gap-12">
             <div className="flex flex-col items-center text-center reveal" data-reveal>
               <h1 className="mt-6 text-5xl font-semibold text-slate-900 sm:text-6xl lg:text-[112px] lg:leading-[1]">
-                BrandView Studio
+                Zesty® Studio
               </h1>
               <p className="mt-6 max-w-2xl text-base text-slate-600 sm:text-lg">
                 We build premium brand experiences, digital platforms, and campaigns that
@@ -117,7 +175,7 @@ export default function Home() {
                 <div className="relative mt-12 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                   <div className="max-w-lg">
                     <p className="text-[11px] uppercase tracking-[0.4em] text-white/70">
-                      Welcome to BrandView
+                      Welcome to Zesty
                     </p>
                     <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
                       We Build Brands That
@@ -126,7 +184,7 @@ export default function Home() {
                   </div>
                   <Link to="/contact">
                     <Button className="rounded-full bg-white px-7 py-2.5 text-sm font-semibold text-slate-900 hover:bg-white/90">
-                      Let's Talk
+                      Start a Project
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
@@ -148,9 +206,16 @@ export default function Home() {
                   We Create Strategic, Elegant Digital Experiences
                 </h3>
                 <p className="mt-4 text-slate-600">
-                  At BrandView Studio, we focus on transforming ideas into premium digital
+                  At Zesty Studio, we focus on transforming ideas into premium digital
                   experiences. Our work combines clarity, storytelling, and performance.
                 </p>
+                <Link
+                  to="/contact"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white"
+                >
+                  Let's Talk
+                  <ArrowRight className="h-3 w-3" />
+                </Link>
                 <div className="mt-6 flex flex-wrap gap-4">
                   <div className="rounded-2xl bg-white px-5 py-4 shadow-sm border border-slate-100">
                     <p className="text-xl font-semibold text-slate-900">25K+</p>
@@ -188,7 +253,7 @@ export default function Home() {
               <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
                 Selected Projects
               </p>
-              <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
+              <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900 select-none">
                 Our Latest Work
               </h2>
             </div>
@@ -201,71 +266,148 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {projects.slice(0, 3).map((project) => (
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {projects.slice(0, 2).map((project) => {
+              const tags = [
+                project.category,
+                project.services?.[1] ? project.services[1] : "Design",
+              ];
+
+              return (
+                <article
+                  key={project.slug}
+                  className="group rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden reveal"
+                  data-reveal
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={project.coverImage}
+                      alt={project.title}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <Link
+                      to={`/works/${project.slug}`}
+                      className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
+                      aria-label={`Open ${project.title}`}
+                    >
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                  <div className="p-6">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <h3 className="text-lg sm:text-xl font-semibold text-slate-900">
+                        {project.title}
+                      </h3>
+                      <div className="flex items-center gap-2">
+                        {tags.map((tag) => (
+                          <span
+                            key={`${project.slug}-${tag}`}
+                            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          {projects.slice(2, 3).map((project) => {
+            const tags = [
+              project.category,
+              project.services?.[1] ? project.services[1] : "Design",
+            ];
+
+            return (
               <article
                 key={project.slug}
-                className="group rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden reveal" data-reveal
+                className="mt-6 group rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden reveal"
+                data-reveal
               >
-                <div className="relative aspect-[4/3]">
+                <div className="relative aspect-[16/7] overflow-hidden">
                   <img
                     src={project.coverImage}
                     alt={project.title}
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
+                  <Link
+                    to={`/works/${project.slug}`}
+                    className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
+                    aria-label={`Open ${project.title}`}
+                  >
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
                 </div>
                 <div className="p-6">
-                  <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
-                    {project.category}
-                  </p>
-                  <h3 className="mt-3 text-xl font-semibold text-slate-900">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-slate-600">{project.excerpt}</p>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <h3 className="text-lg sm:text-xl font-semibold text-slate-900">
+                      {project.title}
+                    </h3>
+                    <div className="flex items-center gap-2">
+                      {tags.map((tag) => (
+                        <span
+                          key={`${project.slug}-${tag}`}
+                          className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </article>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </section>
 
       <section
         id="services"
-        className="py-16 sm:py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 text-white"
+        className="py-20 sm:py-28 bg-gradient-to-br from-slate-950 via-blue-900 to-blue-600 text-white"
       >
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="text-center reveal" data-reveal>
-            <p className="text-xs uppercase tracking-[0.3em] text-white/60">
-              What We Do Best
+            <p className="text-xs uppercase tracking-[0.35em] text-white/70">
+              Our Services
             </p>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-semibold">
-              Premium Creative Services
+            <h2 className="mt-4 text-4xl sm:text-5xl font-semibold leading-tight">
+              What We Do Best
             </h2>
+            <p className="mt-3 text-sm sm:text-base text-white/70">
+              We are a full-service creative agency built for bold brands and ambitious ideas.
+            </p>
           </div>
-          <div className="mt-10 divide-y divide-white/10">
-            {services.map((service, index) => (
+          <div className="mt-12 divide-y divide-white/10">
+            {homeServices.map((service, index) => (
               <div
-                key={service.id}
-                className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between reveal" data-reveal
+                key={service.title}
+                className="flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between reveal"
+                data-reveal
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-xs text-white/60">{`(${String(
+                  <span className="text-sm text-white/70">{`(${String(
                     index + 1
                   ).padStart(2, "0")})`}</span>
                   <div>
-                    <h3 className="text-xl font-semibold">{service.title}</h3>
-                    <p className="mt-2 text-sm text-white/70">
+                    <h3 className="text-2xl sm:text-3xl font-semibold">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 text-sm sm:text-base text-white/70 max-w-xl">
                       {service.description}
                     </p>
                   </div>
                 </div>
                 <Link
                   to="/services"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-xs font-semibold text-white/80 hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-xs font-semibold text-slate-900 hover:bg-white/90"
                 >
                   Learn More
-                  <ArrowRight className="h-3 w-3" />
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             ))}
@@ -339,10 +481,10 @@ export default function Home() {
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="text-center reveal" data-reveal>
             <p className="text-xs uppercase tracking-[0.32em] text-white/70">
-              From Start to Finish
+              Work Process
             </p>
             <h2 className="mt-4 text-4xl sm:text-5xl font-semibold">
-              A Process Built For Scale
+              From Start to Finish
             </h2>
             <p className="mt-4 text-sm sm:text-base text-white/70">
               A refined workflow designed to deliver consistent, high-quality results.
@@ -352,12 +494,16 @@ export default function Home() {
             {processSteps.map((step) => (
               <div
                 key={step.number}
-                className="flex min-h-[240px] flex-col justify-between rounded-[24px] border border-white/15 bg-white/10 p-8"
+                className="flex min-h-[240px] flex-col justify-between rounded-[24px] border border-white/15 bg-white/10 p-8 reveal"
+                data-reveal
               >
-                <p className="text-xs text-white/50">{step.number}</p>
-                <div className="mt-4 space-y-3">
+                <div className="space-y-3">
                   <h3 className="text-lg font-semibold">{step.title}</h3>
                   <p className="text-sm text-white/75">{step.description}</p>
+                </div>
+                <div className="mt-8 flex items-center justify-between text-white/70">
+                  <step.icon className="h-6 w-6" />
+                  <span className="text-base font-semibold">{step.number}.</span>
                 </div>
               </div>
             ))}
@@ -367,28 +513,86 @@ export default function Home() {
 
       <section className="py-16 sm:py-20">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
-          <div className="text-center reveal" data-reveal>
-            <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+          <div className="max-w-2xl reveal" data-reveal>
+            <p className="text-xs uppercase tracking-[0.32em] text-slate-500">
               Testimonials
             </p>
             <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
               What Our Clients Say
             </h2>
+            <p className="mt-3 text-sm sm:text-base text-slate-500">
+              Uncover the experiences that shaped groundbreaking campaigns and lasting
+              partnerships.
+            </p>
           </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((testimonial) => (
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+            <div className="relative overflow-hidden rounded-3xl bg-slate-200 shadow-sm reveal" data-reveal>
+              <img
+                src={testimonialVideo.image}
+                alt={testimonialVideo.title}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-white">
+                <p className="text-lg font-semibold">{testimonialVideo.title}</p>
+                <button
+                  type="button"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-md"
+                  aria-label="Play testimonial video"
+                >
+                  <Play className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+
+            <div className="rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 p-8 text-white shadow-sm reveal" data-reveal>
+              <p className="text-base sm:text-lg leading-relaxed">
+                "{featuredTestimonial.quote}"
+              </p>
+              <div className="mt-8 flex items-center gap-4">
+                <img
+                  src={featuredTestimonial.avatar}
+                  alt={featuredTestimonial.name}
+                  className="h-12 w-12 rounded-full object-cover"
+                  loading="lazy"
+                />
+                <div>
+                  <p className="text-sm font-semibold">{featuredTestimonial.name}</p>
+                  <p className="text-xs text-white/70">{featuredTestimonial.role}</p>
+                </div>
+                <span className="ml-auto text-4xl font-semibold text-white/30">"</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {testimonialCards.map((testimonial) => (
               <div
                 key={testimonial.name}
-                className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm reveal" data-reveal
+                className="rounded-3xl border border-slate-100 bg-slate-50 p-6 shadow-sm reveal"
+                data-reveal
               >
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  {testimonial.quote}
+                  "{testimonial.quote}"
                 </p>
-                <div className="mt-6">
-                  <p className="text-sm font-semibold text-slate-900">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-xs text-slate-500">{testimonial.role}</p>
+                <div className="mt-6 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className="h-10 w-10 rounded-full object-cover"
+                      loading="lazy"
+                    />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-xs text-slate-500">{testimonial.role}</p>
+                    </div>
+                  </div>
+                  <span className="text-3xl font-semibold text-blue-600">"</span>
                 </div>
               </div>
             ))}
@@ -438,7 +642,7 @@ export default function Home() {
                     {post.title}
                   </h3>
                   <p className="mt-2 text-xs text-slate-500">
-                    by {post.author} Â· {post.date}
+                    by {post.author} · {post.date}
                   </p>
                 </div>
               </article>
