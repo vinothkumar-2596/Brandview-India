@@ -13,7 +13,7 @@ export default function BlogCard({ post }) {
 
   return (
     <Link href={`/blog/${post.slug}`} className="group block">
-      <div className="rounded-2xl border border-white/10 bg-card overflow-hidden">
+      <div className="rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300">
         <div className="aspect-[16/10] relative">
           <Image
             src={post.coverImage}
@@ -22,7 +22,7 @@ export default function BlogCard({ post }) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
-        <div className="p-6">
+        <div className="p-6 bg-white/5 backdrop-blur-sm">
           <div className="flex items-center space-x-4 mb-4">
             <span className="text-primary text-sm font-medium">{post.category}</span>
             <span className="flex items-center text-muted-foreground text-sm">
