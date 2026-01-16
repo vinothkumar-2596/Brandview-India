@@ -49,8 +49,8 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {contactInfo.map((info) => (
-              <div key={info.title} className="p-6 rounded-2xl border border-white/10 bg-card text-center">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <div key={info.title} className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl text-center hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                <div className="w-14 h-14 rounded-xl bg-primary/20 backdrop-blur-lg border border-primary/20 flex items-center justify-center mx-auto mb-4">
                   <info.icon className="h-7 w-7 text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{info.title}</h3>
