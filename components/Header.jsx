@@ -114,7 +114,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden glass-effect border-t border-white/10">
+        <div className="lg:hidden bg-background/80 backdrop-blur-2xl border-t border-white/10">
           <div className="px-4 py-6 space-y-4">
             {navLinks.map((link) => (
               <Link
