@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import CTASection from "@/components/CTASection";
 import {
@@ -12,6 +13,10 @@ import {
   PenTool,
   Monitor,
   Target,
+  Sparkles,
+  LayoutGrid,
+  Code,
+  Smartphone,
 } from "lucide-react";
 import { projects } from "@/content/projects";
 import { blogPosts } from "@/content/blog";
@@ -94,21 +99,25 @@ const homeServices = [
     title: "Branding & Identity",
     description:
       "We craft bold, memorable brand systems that set you apart and build trust.",
+    icon: Sparkles,
   },
   {
     title: "UI/UX Design",
     description:
       "User-first experiences that feel intuitive, elegant, and conversion-ready.",
+    icon: LayoutGrid,
   },
   {
-    title: "Content Creation",
+    title: "Web Development",
     description:
-      "Strategic content that tells your story and connects with the right audience.",
+      "Modern, high-performance websites built for speed, SEO, and scalability.",
+    icon: Code,
   },
   {
-    title: "Digital Marketing",
+    title: "App Development",
     description:
-      "Data-driven campaigns that grow visibility, engagement, and revenue.",
+      "Cross-platform apps designed to deliver seamless, engaging experiences.",
+    icon: Smartphone,
   },
 ];
 
@@ -147,20 +156,41 @@ export default function Home() {
 
     return () => observer.disconnect();
   }, []);
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
+  const stagger = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
   return (
-    <div className="bg-[#f7f3ef]">
-      <section id="home" className="pb-24 pt-28 sm:pb-28 sm:pt-32">
+    <div className="bg-[#f7f3ef] home-root">
+      <motion.section
+        id="home"
+        className="pb-24 pt-28 sm:pb-28 sm:pt-32"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="flex flex-col gap-12">
             <div className="flex flex-col items-center text-center reveal mt-12 mb-32" data-reveal>
-              <h1 className="hero-title mt-6 max-w-5xl text-4xl font-semibold text-slate-900 tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1]">
+              <h1 className="hero-title hero-heading mt-6 max-w-5xl text-4xl font-semibold text-slate-900 tracking-tight leading-[1.5] sm:text-5xl lg:text-6xl">
                 <span className="hero-line hero-line-1 block">
                   We're a Global Branding Design Agency Curating Experiences That
                 </span>
-                <span className="hero-line hero-line-2 dynamic-phrase-wrap block">
+                <span className="hero-line hero-line-2 dynamic-phrase-wrap block mt-1">
                   <span
                     key={activePhrase}
-                    className="dynamic-phrase-text text-[#C4B38D] font-bold"
+                    className="dynamic-phrase-text text-[#B3A380] font-semibold"
                   >
                     {dynamicPhrases[activePhrase]}
                   </span>
@@ -170,33 +200,33 @@ export default function Home() {
 
             <div id="about" className="grid gap-8 lg:grid-cols-[1.2fr_1fr] items-center reveal reveal-delay-1" data-reveal>
               <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-slate-500">About</p>
-                <h3 className="mt-4 text-2xl sm:text-3xl font-semibold text-slate-900">
+                <p className="about-eyebrow text-xs uppercase tracking-[0.3em] text-secondary/60">About</p>
+                <h3 className="about-title mt-4 text-2xl sm:text-3xl font-semibold text-secondary">
                   We Create Strategic, Elegant Digital Experiences
                 </h3>
-                <p className="mt-4 text-slate-600">
+                <p className="about-copy mt-4 text-secondary/70">
                   At BrandView India, we focus on transforming ideas into premium digital
                   experiences. Our work combines clarity, storytelling, and performance.
                 </p>
                 <Link
                   to="/contact"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-xs font-semibold text-secondary-foreground"
                 >
                   Let's Talk
-                  <ArrowRight className="h-3 w-3" />
+                  <ArrowRight className="h-3 w-3 text-[#B3A380]" />
                 </Link>
                 <div className="mt-6 flex flex-wrap gap-4">
-                  <div className="rounded-2xl bg-white px-5 py-4 shadow-sm border border-slate-100">
-                    <p className="text-xl font-semibold text-slate-900">25K+</p>
-                    <p className="text-xs text-slate-500">Audience Reached</p>
+                  <div className="stat-card rounded-2xl bg-white px-5 py-4 border border-black/5">
+                    <p className="text-xl font-semibold text-[#B3A380]">25K+</p>
+                    <p className="stat-meta text-xs text-secondary/70">Audience Reached</p>
                   </div>
-                  <div className="rounded-2xl bg-white px-5 py-4 shadow-sm border border-slate-100">
-                    <p className="text-xl font-semibold text-slate-900">18+</p>
-                    <p className="text-xs text-slate-500">Years of Experience</p>
+                  <div className="stat-card rounded-2xl bg-white px-5 py-4 border border-black/5">
+                    <p className="text-xl font-semibold text-[#B3A380]">18+</p>
+                    <p className="stat-meta text-xs text-secondary/70">Years of Experience</p>
                   </div>
-                  <div className="rounded-2xl bg-white px-5 py-4 shadow-sm border border-slate-100">
-                    <p className="text-xl font-semibold text-slate-900">99%</p>
-                    <p className="text-xs text-slate-500">Client Satisfaction</p>
+                  <div className="stat-card rounded-2xl bg-white px-5 py-4 border border-black/5">
+                    <p className="text-xl font-semibold text-[#B3A380]">99%</p>
+                    <p className="stat-meta text-xs text-secondary/70">Client Satisfaction</p>
                   </div>
                 </div>
               </div>
@@ -213,22 +243,29 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="projects" className="py-16 sm:py-20">
+      <motion.section
+        id="projects"
+        className="projects-section py-16 sm:py-20"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between reveal" data-reveal>
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+              <p className="project-eyebrow text-xs uppercase tracking-[0.3em] text-slate-500">
                 Selected Projects
               </p>
-              <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900 select-none">
+              <h2 className="project-title mt-4 text-3xl sm:text-4xl font-semibold text-slate-900 select-none">
                 Our Latest Work
               </h2>
             </div>
             <Link
               to="/works"
-              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-xs font-semibold text-white"
+              className="project-button inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-xs font-semibold text-white"
             >
               View All Works
               <ArrowRight className="h-3 w-3" />
@@ -245,7 +282,7 @@ export default function Home() {
               return (
                 <article
                   key={project.slug}
-                  className="group rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden reveal"
+                  className="project-card group rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden reveal"
                   data-reveal
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
@@ -257,7 +294,7 @@ export default function Home() {
                     />
                     <Link
                       to={`/works/${project.slug}`}
-                      className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
+                      className="project-action absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
                       aria-label={`Open ${project.title}`}
                     >
                       <ArrowUpRight className="h-4 w-4" />
@@ -265,14 +302,14 @@ export default function Home() {
                   </div>
                   <div className="p-6">
                     <div className="flex flex-wrap items-center justify-between gap-3">
-                      <h3 className="text-lg sm:text-xl font-semibold text-slate-900">
+                      <h3 className="project-title text-lg sm:text-xl font-semibold text-slate-900">
                         {project.title}
                       </h3>
                       <div className="flex items-center gap-2">
                         {tags.map((tag) => (
                           <span
                             key={`${project.slug}-${tag}`}
-                            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600"
+                            className="project-tag rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600"
                           >
                             {tag}
                           </span>
@@ -294,7 +331,7 @@ export default function Home() {
             return (
               <article
                 key={project.slug}
-                className="mt-6 group rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden reveal"
+                className="project-card mt-6 group rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden reveal"
                 data-reveal
               >
                 <div className="relative aspect-[16/7] overflow-hidden">
@@ -306,7 +343,7 @@ export default function Home() {
                   />
                   <Link
                     to={`/works/${project.slug}`}
-                    className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
+                    className="project-action absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
                     aria-label={`Open ${project.title}`}
                   >
                     <ArrowUpRight className="h-4 w-4" />
@@ -314,14 +351,14 @@ export default function Home() {
                 </div>
                 <div className="p-6">
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <h3 className="text-lg sm:text-xl font-semibold text-slate-900">
+                    <h3 className="project-title text-lg sm:text-xl font-semibold text-slate-900">
                       {project.title}
                     </h3>
                     <div className="flex items-center gap-2">
                       {tags.map((tag) => (
                         <span
                           key={`${project.slug}-${tag}`}
-                          className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600"
+                          className="project-tag rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600"
                         >
                           {tag}
                         </span>
@@ -333,21 +370,25 @@ export default function Home() {
             );
           })}
         </div>
-      </section>
+      </motion.section>
 
-      <section
+      <motion.section
         id="services"
-        className="py-20 sm:py-28 bg-[#0b1220] text-white"
+        className="py-20 sm:py-28 bg-secondary text-secondary-foreground"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
       >
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="text-center reveal" data-reveal>
-            <p className="text-xs uppercase tracking-[0.35em] text-white/70">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#B3A380]/80">
               Our Services
             </p>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-semibold leading-tight">
+            <h2 className="mt-4 text-4xl sm:text-5xl font-semibold leading-tight text-[#B3A380]">
               What We Do Best
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-white/70">
+            <p className="mt-3 text-sm sm:text-base text-[#D8CCB5]/80">
               We are a full-service creative agency built for bold brands and ambitious ideas.
             </p>
           </div>
@@ -358,22 +399,23 @@ export default function Home() {
                 className="flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between reveal"
                 data-reveal
               >
-                <div className="flex items-start gap-4">
-                  <span className="text-sm text-white/70">{`(${String(
-                    index + 1
-                  ).padStart(2, "0")})`}</span>
+                <div className="flex items-start gap-6">
+                  <span className="sr-only">{`(${String(index + 1).padStart(2, "0")})`}</span>
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-semibold">
-                      {service.title}
-                    </h3>
-                    <p className="mt-3 text-sm sm:text-base text-white/70 max-w-xl">
+                    <div className="flex items-center gap-3">
+                      <service.icon className="h-5 w-5 text-[#B3A380]" />
+                      <h3 className="text-2xl sm:text-3xl font-semibold text-white">
+                        {service.title}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm sm:text-base text-[#D8CCB5]/75 max-w-xl">
                       {service.description}
                     </p>
                   </div>
                 </div>
                 <Link
                   to="/services"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-xs font-semibold text-slate-900 hover:bg-white/90"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#B3A380] px-5 py-2 text-xs font-semibold text-[#B3A380] hover:bg-white/10"
                 >
                   Learn More
                   <ArrowRight className="h-4 w-4" />
@@ -382,133 +424,101 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="py-16 sm:py-20">
+      <motion.section
+        className="py-20 sm:py-28 bg-background text-secondary"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] items-center">
-            <div className="rounded-[28px] border border-white/80 bg-white/85 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl">
-              <h3 className="text-2xl font-semibold text-slate-900">
-                Why Brands Trust Us
-              </h3>
-              <p className="mt-4 text-slate-600">
-                We combine strategy, premium design, and measurable performance to build brands
-                that win trust and loyalty.
-              </p>
-              <div className="mt-6 space-y-3 text-sm text-slate-600">
-                {[
-                  "Dedicated senior-led teams",
-                  "Transparent timelines and reporting",
-                  "Award-winning creative direction",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="h-4 w-4 text-primary" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-[28px] bg-[#0b1220] text-white p-8 shadow-[0_24px_60px_rgba(15,23,42,0.18)]">
-              <div className="flex items-center gap-3">
-                <Trophy className="h-6 w-6 text-white/70" />
-                <h4 className="text-lg font-semibold">Award-Winning Work</h4>
-              </div>
-              <p className="mt-3 text-sm text-white/70">
-                Recognized across design, branding, and digital experiences.
-              </p>
-              <div className="mt-6 space-y-4 text-sm text-white/70">
-                {projects.slice(0, 3).map((project) => (
-                  <div key={project.slug} className="flex items-start gap-3">
-                    <Award className="h-4 w-4 text-white/60 mt-0.5" />
-                    <div>
-                      <p className="text-white">{project.title}</p>
-                      <p className="text-xs text-white/60">{project.client}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 flex gap-4 text-xs text-white/70">
-                <div>
-                  <p className="text-xl font-semibold text-white">40+</p>
-                  <p>Industry Awards</p>
-                </div>
-                <div>
-                  <p className="text-xl font-semibold text-white">120+</p>
-                  <p>Launches</p>
-                </div>
-                <div>
-                  <p className="text-xl font-semibold text-white">5x</p>
-                  <p>Client Growth</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 sm:py-24 bg-primary text-primary-foreground">
-        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
-          <div className="text-center reveal" data-reveal>
-            <p className="text-xs uppercase tracking-[0.32em] text-white/70">
+          <motion.div
+            className="text-center"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+          >
+            <p className="process-eyebrow text-xs uppercase tracking-[0.32em] text-secondary/60">
               Work Process
             </p>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-semibold">
+            <h2 className="process-title mt-4 text-4xl sm:text-5xl font-semibold text-secondary">
               From Start to Finish
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-white/70">
+            <p className="process-copy mt-4 text-sm sm:text-base text-secondary/70">
               A refined workflow designed to deliver consistent, high-quality results.
             </p>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          </motion.div>
+          <motion.div
+            className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             {processSteps.map((step) => (
-              <div
+              <motion.div
                 key={step.number}
-                className="flex min-h-[240px] flex-col justify-between rounded-[24px] border border-white/15 bg-white/10 p-8 reveal"
-                data-reveal
+                className="process-card flex min-h-[260px] flex-col justify-between rounded-[32px] bg-[#E7E0D2] p-10 transition-transform duration-300 hover:-translate-y-1"
+                variants={fadeUp}
               >
-                <div className="space-y-3">
-                  <h3 className="text-lg font-semibold">{step.title}</h3>
-                  <p className="text-sm text-white/75">{step.description}</p>
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-secondary">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-secondary leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
-                <div className="mt-8 flex items-center justify-between text-white/70">
-                  <step.icon className="h-6 w-6" />
-                  <span className="text-base font-semibold">{step.number}.</span>
+                <div className="mt-8 flex items-center justify-between">
+                  <step.icon className="h-7 w-7 text-secondary" />
+                  <span className="text-base font-semibold text-[#B3A380]">
+                    {step.number}.
+                  </span>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="py-16 sm:py-20">
+      <motion.section
+        className="testimonials-section py-16 sm:py-20 bg-background"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="max-w-2xl reveal" data-reveal>
-            <p className="text-xs uppercase tracking-[0.32em] text-slate-500">
+            <p className="testimonials-eyebrow text-xs uppercase tracking-[0.32em] text-secondary/60">
               Testimonials
             </p>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
+            <h2 className="testimonials-title mt-4 text-3xl sm:text-4xl font-semibold text-secondary">
               What Our Clients Say
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-slate-500">
+            <p className="testimonials-copy mt-3 text-sm sm:text-base text-secondary/70">
               Uncover the experiences that shaped groundbreaking campaigns and lasting
               partnerships.
             </p>
           </div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_1fr]">
-            <div className="relative overflow-hidden rounded-3xl bg-slate-200 shadow-sm reveal" data-reveal>
+            <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-sm reveal" data-reveal>
               <img
                 src={testimonialVideo.image}
                 alt={testimonialVideo.title}
                 className="h-full w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-secondary/70" />
-              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-white">
+              <div className="absolute inset-0 bg-secondary/75" />
+              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-primary">
                 <p className="text-lg font-semibold">{testimonialVideo.title}</p>
                 <button
                   type="button"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-md"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md"
                   aria-label="Play testimonial video"
                 >
                   <Play className="h-5 w-5" />
@@ -516,7 +526,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="rounded-3xl bg-secondary p-8 text-white shadow-sm reveal" data-reveal>
+            <div className="rounded-3xl bg-secondary p-8 text-primary shadow-sm reveal" data-reveal>
               <p className="text-base sm:text-lg leading-relaxed">
                 "{featuredTestimonial.quote}"
               </p>
@@ -528,10 +538,14 @@ export default function Home() {
                   loading="lazy"
                 />
                 <div>
-                  <p className="text-sm font-semibold">{featuredTestimonial.name}</p>
-                  <p className="text-xs text-white/70">{featuredTestimonial.role}</p>
+                  <p className="text-sm font-semibold text-white">
+                    {featuredTestimonial.name}
+                  </p>
+                  <p className="text-xs text-primary/80">{featuredTestimonial.role}</p>
                 </div>
-                <span className="ml-auto text-4xl font-semibold text-white/30">"</span>
+                <span className="ml-auto text-4xl font-semibold text-primary/60">
+                  "
+                </span>
               </div>
             </div>
           </div>
@@ -540,10 +554,10 @@ export default function Home() {
             {testimonialCards.map((testimonial) => (
               <div
                 key={testimonial.name}
-                className="rounded-3xl border border-slate-100 bg-slate-50 p-6 shadow-sm reveal"
+                className="testimonial-card rounded-3xl bg-[#E7E0D2] p-6 reveal"
                 data-reveal
               >
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="testimonial-quote text-sm text-secondary/70 leading-relaxed">
                   "{testimonial.quote}"
                 </p>
                 <div className="mt-6 flex items-center justify-between">
@@ -555,10 +569,12 @@ export default function Home() {
                       loading="lazy"
                     />
                     <div>
-                      <p className="text-sm font-semibold text-slate-900">
+                      <p className="text-sm font-semibold text-secondary">
                         {testimonial.name}
                       </p>
-                      <p className="text-xs text-slate-500">{testimonial.role}</p>
+                      <p className="testimonial-role text-xs text-secondary/70">
+                        {testimonial.role}
+                      </p>
                     </div>
                   </div>
                   <span className="text-3xl font-semibold text-primary">"</span>
@@ -567,22 +583,29 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="blog" className="py-16 sm:py-20">
+      <motion.section
+        id="blog"
+        className="blog-section py-16 sm:py-20 bg-background"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between reveal" data-reveal>
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+              <p className="blog-eyebrow text-xs uppercase tracking-[0.3em] text-slate-500">
                 Blog & News
               </p>
-              <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
+              <h2 className="blog-title mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
                 Our Latest Blogs & News
               </h2>
             </div>
             <Link
               to="/blog"
-              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-xs font-semibold text-white"
+              className="blog-button inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-xs font-semibold text-white"
             >
               All Blog
               <ArrowRight className="h-3 w-3" />
@@ -593,7 +616,7 @@ export default function Home() {
             {blogPosts.slice(0, 3).map((post) => (
               <article
                 key={post.slug}
-                className="rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden"
+                className="blog-card rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden"
               >
                 <div className="relative aspect-[4/3]">
                   <img
@@ -604,13 +627,13 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6">
-                  <span className="inline-flex rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-600">
+                  <span className="blog-tag inline-flex rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-600">
                     {post.category}
                   </span>
-                  <h3 className="mt-4 text-lg font-semibold text-slate-900">
+                  <h3 className="blog-post-title mt-4 text-lg font-semibold text-slate-900">
                     {post.title}
                   </h3>
-                  <p className="mt-2 text-xs text-slate-500">
+                  <p className="blog-meta mt-2 text-xs text-slate-500">
                     by {post.author} · {post.date}
                   </p>
                 </div>
@@ -618,11 +641,17 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="contact">
+      <motion.section
+        id="contact"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <CTASection />
-      </section>
+      </motion.section>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 export const pricingPlans = [
   {
     name: 'Starter',
-    price: '$2,999',
+    price: '₹1,25,000',
     tagline: 'Perfect for small projects',
     features: [
       'Brand Identity Design',
@@ -15,7 +15,7 @@ export const pricingPlans = [
   },
   {
     name: 'Professional',
-    price: '$7,999',
+    price: '₹3,50,000',
     tagline: 'Most popular for growing brands',
     features: [
       'Complete Brand Package',
@@ -31,7 +31,7 @@ export const pricingPlans = [
   },
   {
     name: 'Enterprise',
-    price: 'Custom',
+    price: 'Custom (INR)',
     tagline: 'For established businesses',
     features: [
       'Full Brand Ecosystem',

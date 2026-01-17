@@ -12,6 +12,7 @@ import Team from "@/pages/Team";
 import Pricing from "@/pages/Pricing";
 import Faq from "@/pages/Faq";
 import Contact from "@/pages/Contact";
+import Admin from "@/pages/Admin";
 import ComingSoon from "@/pages/ComingSoon";
 import NotFound from "@/pages/NotFound";
 
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

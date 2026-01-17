@@ -4,11 +4,11 @@
 
 @layer base {
   :root {
-    --background: 38 46% 93%;
+    --background: 36 33% 93%;
     --foreground: 0 0% 0%;
-    --card: 38 46% 93%;
+    --card: 36 33% 93%;
     --card-foreground: 0 0% 0%;
-    --popover: 38 46% 93%;
+    --popover: 36 33% 93%;
     --popover-foreground: 0 0% 0%;
     --primary: 41 31% 78%;
     --primary-foreground: 0 0% 0%;
@@ -30,6 +30,199 @@
     --chart-4: 330 70% 62%;
     --chart-5: 35 70% 58%;
   }
+  .theme-dark {
+    --background: 0 0% 11%;
+    --foreground: 36 33% 93%;
+    --card: 0 0% 14%;
+    --card-foreground: 36 33% 93%;
+    --popover: 0 0% 14%;
+    --popover-foreground: 36 33% 93%;
+    --primary: 34 22% 60%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 36 33% 93%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 36 18% 72%;
+    --accent: 34 22% 60%;
+    --accent-foreground: 0 0% 10%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 34 22% 60%;
+  }
+  .theme-dark .home-root {
+    background-color: hsl(var(--background));
+  }
+  .theme-dark .hero-heading {
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .stat-card {
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+  }
+  .theme-dark .stat-card .stat-meta {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .process-card {
+    background-color: hsl(var(--card));
+  }
+  .theme-dark .process-card .text-secondary {
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .projects-section .project-eyebrow {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .projects-section .project-title {
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .projects-section .project-button {
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+  .theme-dark .projects-section .project-card {
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+  }
+  .theme-dark .projects-section .project-action {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .projects-section .project-tag {
+    background-color: hsl(var(--background));
+    border-color: hsl(var(--border));
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .about-eyebrow,
+  .theme-dark .process-eyebrow,
+  .theme-dark .testimonials-eyebrow {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .about-title,
+  .theme-dark .process-title,
+  .theme-dark .testimonials-title {
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .about-copy,
+  .theme-dark .process-copy,
+  .theme-dark .testimonials-copy {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .blog-section .blog-eyebrow {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .blog-section .blog-title {
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .blog-section .blog-button {
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+  .theme-dark .blog-section .blog-card {
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+  }
+  .theme-dark .blog-section .blog-tag {
+    color: hsl(var(--muted-foreground));
+    border-color: hsl(var(--border));
+  }
+  .theme-dark .blog-section .blog-post-title {
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .blog-section .blog-meta {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .testimonials-section .testimonial-card {
+    background-color: hsl(var(--card));
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .testimonials-section .testimonial-card .testimonial-quote {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .header-bar {
+    background-color: rgba(29, 29, 29, 0.95);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .theme-dark .header-title {
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .header-link {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .header-link:hover {
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .header-logo {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .theme-dark .header-logo-dot {
+    background-color: hsl(var(--foreground));
+  }
+  .dropdown-panel {
+    background-color: rgb(29, 29, 29);
+    backdrop-filter: blur(20px) saturate(1.05);
+    -webkit-backdrop-filter: blur(20px) saturate(1.05);
+  }
+  .theme-dark .dropdown-panel {
+    background-color: #E7E0D2;
+    backdrop-filter: blur(20px) saturate(1.05);
+    -webkit-backdrop-filter: blur(20px) saturate(1.05);
+  }
+  .theme-dark .dropdown-panel .dropdown-label {
+    color: #6b5f4b;
+  }
+  .theme-dark .dropdown-panel .dropdown-title {
+    color: #1d1d1d;
+    font-weight: 700;
+  }
+  .theme-dark .dropdown-panel .dropdown-copy {
+    color: #4b4337;
+  }
+  .theme-dark .dropdown-panel .dropdown-item {
+    background-color: rgba(245, 239, 229, 0.85);
+    border-color: transparent;
+    color: #1d1d1d;
+    font-weight: 600;
+  }
+  .theme-dark .dropdown-panel .dropdown-item:hover {
+    background-color: rgba(245, 239, 229, 0.95);
+    border-color: transparent;
+  }
+  .theme-dark .dropdown-panel .dropdown-icon,
+  .theme-dark .dropdown-panel .dropdown-arrow {
+    color: #7a6a52;
+  }
+  .theme-dark .contact-title,
+  .theme-dark .contact-section-title {
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .contact-subtitle,
+  .theme-dark .contact-copy,
+  .theme-dark .contact-eyebrow {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .contact-link {
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .testimonials-section .testimonial-card .testimonial-role {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .contact-surface {
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+  }
+  .theme-dark .contact-input {
+    background-color: hsl(var(--background));
+    border-color: hsl(var(--border));
+    color: hsl(var(--foreground));
+  }
+  .theme-dark .contact-input::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+  .theme-dark .contact-chip {
+    background-color: hsl(var(--background));
+    border-color: hsl(var(--border));
+    color: hsl(var(--muted-foreground));
+  }
 }
 
 @layer base {
@@ -41,6 +234,7 @@
     font-family: "Plus Jakarta Sans", sans-serif;
     background-attachment: fixed;
     position: relative;
+    caret-color: transparent;
   }
   body::before {
     content: "";
@@ -49,6 +243,9 @@
     border: 10px solid rgba(255, 255, 255, 0.9);
     pointer-events: none;
     z-index: 60;
+  }
+  .theme-dark body::before {
+    border-color: rgba(255, 255, 255, 0.18);
   }
   html {
     scroll-behavior: smooth;
@@ -61,6 +258,12 @@
   h6 {
     caret-color: transparent;
     user-select: none;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"] {
+    caret-color: currentColor;
   }
 }
 

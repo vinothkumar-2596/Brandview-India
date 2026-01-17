@@ -1,94 +1,202 @@
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
-import CTASection from "@/components/CTASection";
-
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: "Visit Us",
-    details: ["123 Creative Street", "Design District, NY 10001"],
-  },
-  {
-    icon: Mail,
-    title: "Email Us",
-    details: ["hello@brandview.agency", "support@brandview.agency"],
-  },
-  {
-    icon: Phone,
-    title: "Call Us",
-    details: ["+1 (234) 567-890", "+1 (234) 567-891"],
-  },
-  {
-    icon: Clock,
-    title: "Working Hours",
-    details: ["Mon - Fri: 9AM - 6PM", "Sat - Sun: Closed"],
-  },
-];
+import { ArrowUpRight, BadgeCheck, Mail, MapPin } from "lucide-react";
 
 export default function ContactPage() {
   return (
     <>
-      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-background" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="text-primary text-sm font-medium tracking-wider uppercase">
-              Contact Us
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight mt-4 mb-6">
-              Let's Start a Conversation
-            </h1>
-            <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
-              Have a project in mind? We'd love to hear about it. Get in touch and let's create
-              something amazing together.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {contactInfo.map((info) => (
-              <div
-                key={info.title}
-                className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl text-center hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-              >
-                <div className="w-14 h-14 rounded-xl bg-primary/20 backdrop-blur-lg border border-primary/20 flex items-center justify-center mx-auto mb-4">
-                  <info.icon className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">{info.title}</h3>
-                {info.details.map((detail) => (
-                  <p key={detail} className="text-muted-foreground">
-                    {detail}
-                  </p>
-                ))}
+      <section className="pt-28 pb-20 sm:pt-32 sm:pb-24">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
+          <div className="flex flex-wrap items-center justify-between gap-6 border-b border-secondary/10 pb-10">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 rounded-full border border-secondary/10 bg-white/70 px-3 py-1 text-xs text-secondary/70">
+                <BadgeCheck className="h-4 w-4 text-[#B3A380]" />
+                Contact page
               </div>
-            ))}
+              <h1 className="contact-title text-4xl sm:text-5xl font-semibold text-secondary">
+                Get in touch
+              </h1>
+              <p className="contact-subtitle text-base text-secondary/70">
+                hello@brandview.in
+              </p>
+            </div>
+            <a
+              href="mailto:hello@brandview.in"
+              className="contact-link inline-flex items-center gap-3 text-base font-semibold text-secondary"
+            >
+              Email us
+              <ArrowUpRight className="h-5 w-5 text-[#B3A380]" />
+            </a>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-semibold mb-6">Send Us a Message</h2>
-              <ContactForm />
-            </div>
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-semibold mb-6">Our Location</h2>
-              <div className="aspect-square lg:aspect-auto lg:h-full rounded-2xl overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
-                <div className="w-full h-full min-h-[400px] bg-accent/40 flex items-center justify-center">
-                  <div className="text-center p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/10">
-                    <MapPin className="h-16 w-16 text-primary/50 mx-auto mb-4" />
-                    <p className="text-muted-foreground">123 Creative Street</p>
-                    <p className="text-muted-foreground">Design District, NY 10001</p>
+          <div className="mt-12 grid gap-10 lg:grid-cols-[0.5fr_1fr]">
+            <aside className="space-y-8">
+              <div className="contact-surface rounded-[32px] border border-secondary/10 bg-white/60 p-8">
+                <p className="contact-eyebrow text-xs uppercase tracking-[0.2em] text-secondary/50">
+                  Offers
+                </p>
+                <h2 className="contact-section-title mt-4 text-xl font-semibold text-secondary">
+                  Let's work together
+                </h2>
+                <p className="contact-copy mt-3 text-sm text-secondary/70">
+                  Start a new conversation if you have an interesting idea that fits
+                  BrandView India's focus on strategic branding.
+                </p>
+                <div className="contact-copy mt-6 grid gap-4 text-sm text-secondary/70">
+                  <div className="border-b border-secondary/10 pb-3">
+                    Full name
+                  </div>
+                  <div className="border-b border-secondary/10 pb-3">
+                    Email
+                  </div>
+                  <div className="border-b border-secondary/10 pb-3">
+                    Company name
+                  </div>
+                  <div className="h-24 rounded-2xl border border-secondary/10 bg-white/40 p-3">
+                    Your message
+                  </div>
+                </div>
+              </div>
+
+              <div className="contact-surface rounded-[32px] border border-secondary/10 bg-white/60 p-8">
+                <p className="contact-eyebrow text-xs uppercase tracking-[0.2em] text-secondary/50">
+                  Trust
+                </p>
+                <h2 className="contact-section-title mt-4 text-xl font-semibold text-secondary">
+                  Why clients choose us
+                </h2>
+                <div className="contact-copy mt-4 space-y-4 text-sm text-secondary/70">
+                  <div className="border-b border-secondary/10 pb-3">
+                    <p className="text-secondary">Clear process</p>
+                    <p>Weekly updates, shared timelines, and no surprises.</p>
+                  </div>
+                  <div className="border-b border-secondary/10 pb-3">
+                    <p className="text-secondary">Senior-led teams</p>
+                    <p>Strategy and design reviewed by leadership every week.</p>
+                  </div>
+                  <div className="border-b border-secondary/10 pb-3">
+                    <p className="text-secondary">Transparent pricing</p>
+                    <p>Detailed scope and pricing in INR before we begin.</p>
+                  </div>
+                  <div>
+                    <p className="text-secondary">Fast response</p>
+                    <p>We reply within 24 hours, even on weekends.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="contact-surface rounded-[32px] border border-secondary/10 bg-white/60 p-8">
+                <p className="contact-eyebrow text-xs uppercase tracking-[0.2em] text-secondary/50">
+                  Our locations
+                </p>
+                <h2 className="contact-section-title mt-4 text-xl font-semibold text-secondary">
+                  Around the world
+                </h2>
+                <p className="contact-copy mt-3 text-sm text-secondary/70">
+                  We collaborate with clients across India and global markets.
+                </p>
+                <div className="contact-copy mt-6 space-y-4 text-sm text-secondary/70">
+                  <div>
+                    <p className="text-secondary">Chennai</p>
+                    <p>Anna Salai, 600002</p>
+                  </div>
+                  <div>
+                    <p className="text-secondary">Bengaluru</p>
+                    <p>MG Road, 560001</p>
+                  </div>
+                  <div>
+                    <p className="text-secondary">Dubai</p>
+                    <p>Business Bay</p>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <div className="space-y-10">
+              <div className="contact-surface rounded-[32px] border border-secondary/10 bg-white/60 p-8">
+                <h2 className="contact-section-title text-2xl font-semibold text-secondary">
+                  Let's work together
+                </h2>
+                <p className="contact-copy mt-2 text-sm text-secondary/70">
+                  Share your goals, timelines, and budget range. We will respond within
+                  24 hours.
+                </p>
+                <div className="mt-6">
+                  <ContactForm />
+                </div>
+              </div>
+
+              <div className="grid gap-10 border-t border-secondary/10 pt-10 lg:grid-cols-2">
+                <div>
+                  <p className="contact-eyebrow text-xs uppercase tracking-[0.2em] text-secondary/50">
+                    Our offices
+                  </p>
+                  <h3 className="contact-section-title mt-4 text-2xl font-semibold text-secondary">
+                    India headquarters
+                  </h3>
+                  <p className="contact-copy mt-3 text-sm text-secondary/70">
+                    BrandView India, Chennai 600001
+                  </p>
+                  <p className="contact-copy mt-2 text-sm text-secondary/70">
+                    Phone: +91 98 4012 3456
+                  </p>
+                  <div className="contact-copy mt-6 space-y-4 text-sm text-secondary/70">
+                    <div className="border-t border-secondary/10 pt-4">
+                      <p className="text-secondary">Corporate hub</p>
+                      <p>World Trade Center, Bengaluru</p>
+                    </div>
+                    <div className="border-t border-secondary/10 pt-4">
+                      <p className="text-secondary">Design studio</p>
+                      <p>T Nagar, Chennai</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p className="contact-eyebrow text-xs uppercase tracking-[0.2em] text-secondary/50">
+                    Around the world
+                  </p>
+                  <h3 className="contact-section-title mt-4 text-2xl font-semibold text-secondary">
+                    Global collaboration
+                  </h3>
+                  <p className="contact-copy mt-3 text-sm text-secondary/70">
+                    Wherever you are, we can support you with branding and digital experiences.
+                  </p>
+                  <div className="contact-copy mt-6 grid gap-4 text-sm text-secondary/70 sm:grid-cols-2">
+                    <div>
+                      <p className="text-secondary">Singapore</p>
+                      <p>Marina Bay</p>
+                    </div>
+                    <div>
+                      <p className="text-secondary">London</p>
+                      <p>South Bank</p>
+                    </div>
+                    <div>
+                      <p className="text-secondary">Riyadh</p>
+                      <p>King Abdullah Rd</p>
+                    </div>
+                    <div>
+                      <p className="text-secondary">Toronto</p>
+                      <p>Financial District</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-secondary/10 pt-10">
+            <h2 className="contact-section-title text-3xl sm:text-4xl font-semibold text-secondary">
+              Let's start to work
+            </h2>
+            <a
+              href="mailto:hello@brandview.in"
+              className="contact-link inline-flex items-center gap-3 text-base font-semibold text-secondary"
+            >
+              Start a project
+              <ArrowUpRight className="h-5 w-5 text-[#B3A380]" />
+            </a>
+          </div>
         </div>
       </section>
-
-      <CTASection />
     </>
   );
 }

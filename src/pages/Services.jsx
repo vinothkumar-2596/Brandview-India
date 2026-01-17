@@ -1,6 +1,6 @@
 import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
-import { Palette, Monitor, Figma, Code, TrendingUp, Play, ArrowRight } from "lucide-react";
+import { Palette, Monitor, Figma, Code, ArrowRight } from "lucide-react";
 
 const detailedServices = [
   {
@@ -63,36 +63,6 @@ const detailedServices = [
       "Maintenance",
     ],
   },
-  {
-    id: "marketing",
-    title: "Digital Marketing",
-    description:
-      "Strategic marketing campaigns that amplify your brand presence and generate qualified leads.",
-    icon: "TrendingUp",
-    features: [
-      "SEO",
-      "Content Marketing",
-      "Social Media",
-      "PPC Campaigns",
-      "Email Marketing",
-      "Analytics",
-    ],
-  },
-  {
-    id: "motion",
-    title: "Motion Design",
-    description:
-      "Captivating animations and motion graphics that bring your brand story to life.",
-    icon: "Play",
-    features: [
-      "Animated Logos",
-      "Explainer Videos",
-      "Social Media Content",
-      "UI Animations",
-      "3D Animation",
-      "Video Production",
-    ],
-  },
 ];
 
 const iconMap = {
@@ -100,8 +70,6 @@ const iconMap = {
   Monitor: Monitor,
   Figma: Figma,
   Code: Code,
-  TrendingUp: TrendingUp,
-  Play: Play,
 };
 
 export default function ServicesPage() {
@@ -187,7 +155,7 @@ export default function ServicesPage() {
               { step: "04", title: "Launch", desc: "Deploying and optimizing for results." },
             ].map((item) => (
               <div key={item.step} className="text-center">
-                <div className="text-5xl font-bold text-primary/20 mb-4">{item.step}</div>
+                <div className="text-5xl font-bold text-[#B3A380] mb-4">{item.step}</div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                 <p className="text-muted-foreground">{item.desc}</p>
               </div>

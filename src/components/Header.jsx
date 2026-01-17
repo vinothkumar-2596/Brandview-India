@@ -1,6 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  ArrowRight,
+  Users,
+  Tag,
+  HelpCircle,
+  Shield,
+  Newspaper,
+  Sparkles,
+  Moon,
+  Sun,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Header() {
@@ -8,6 +21,7 @@ export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isBlogDropdownOpen, setIsBlogDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [theme, setTheme] = useState("light");
   const dropdownCloseTimer = useRef(null);
   const blogCloseTimer = useRef(null);
 
@@ -17,6 +31,22 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const storedTheme = window.localStorage.getItem("theme");
+    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+    const resolvedTheme = storedTheme || (prefersDark ? "dark" : "light");
+    setTheme(resolvedTheme);
+    document.documentElement.classList.toggle("theme-dark", resolvedTheme === "dark");
+  }, []);
+
+  const setThemeMode = (mode) => {
+    setTheme(mode);
+    if (typeof window === "undefined") return;
+    document.documentElement.classList.toggle("theme-dark", mode === "dark");
+    window.localStorage.setItem("theme", mode);
+  };
 
   const openDropdown = () => {
     if (dropdownCloseTimer.current) {
@@ -53,14 +83,15 @@ export default function Header() {
   ];
 
   const dropdownLinks = [
-    { href: "/team", label: "Team" },
-    { href: "/pricing", label: "Pricing" },
-    { href: "/faq", label: "FAQ" },
+    { href: "/team", label: "Team", icon: Users },
+    { href: "/pricing", label: "Pricing", icon: Tag },
+    { href: "/faq", label: "FAQ", icon: HelpCircle },
+    { href: "/admin", label: "Admin", icon: Shield },
   ];
 
   const blogLinks = [
-    { href: "/blog", label: "Latest Posts" },
-    { href: "/blog", label: "Insights" },
+    { href: "/blog", label: "Latest Posts", icon: Newspaper },
+    { href: "/blog", label: "Insights", icon: Sparkles },
   ];
 
   return (
@@ -70,12 +101,12 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-28 max-w-[1200px] items-center px-4 sm:px-6 pt-5">
-        <div className="flex w-full items-center justify-between rounded-2xl border border-white/80 bg-white/75 px-5 py-3 backdrop-blur-2xl">
+        <div className="header-bar flex w-full items-center justify-between rounded-2xl border border-white/80 bg-white/75 px-5 py-3 backdrop-blur-2xl">
           <Link to="/" className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/70 shadow-inner">
-              <span className="h-3 w-3 rounded-full bg-slate-900" />
+            <span className="header-logo flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/70 shadow-inner">
+              <span className="header-logo-dot h-3 w-3 rounded-full bg-slate-900" />
             </span>
-            <span className="text-lg font-semibold text-slate-900">BrandView India</span>
+            <span className="header-title text-lg font-semibold text-slate-900">BrandView India</span>
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-7 text-sm font-medium">
@@ -84,8 +115,8 @@ export default function Header() {
               key={link.href}
               to={link.href}
               className={({ isActive }) =>
-                `transition-colors duration-200 ${
-                  isActive ? "text-primary" : "text-slate-600 hover:text-slate-900"
+                `header-link transition-colors duration-200 ${
+                  isActive ? "text-[#B3A380]" : "text-slate-600 hover:text-slate-900"
                 }`
               }
             >
@@ -100,8 +131,8 @@ export default function Header() {
           >
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className={`flex items-center transition-colors duration-200 ${
-                isDropdownOpen ? "text-primary" : "text-slate-600 hover:text-slate-900"
+              className={`header-link flex items-center transition-colors duration-200 ${
+                isDropdownOpen ? "text-[#B3A380]" : "text-slate-600 hover:text-slate-900"
               }`}
             >
               Pages
@@ -113,19 +144,41 @@ export default function Header() {
             </button>
             {isDropdownOpen && (
               <div
-                className="dropdown-glass absolute top-full left-0 mt-2 w-40 rounded-2xl border border-white/70 py-2 shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
+                className="dropdown-panel absolute top-full left-1/2 mt-4 w-[90vw] max-w-[1100px] -translate-x-1/2 rounded-[24px] border border-secondary/20 px-8 py-7 shadow-[0_30px_70px_rgba(15,23,42,0.18)]"
                 onMouseEnter={openDropdown}
                 onMouseLeave={closeDropdown}
               >
-                {dropdownLinks.map((link) => (
-                  <NavLink
-                    key={link.href}
-                    to={link.href}
-                    className="block px-4 py-2 text-slate-600 transition-colors hover:bg-white/60 hover:text-slate-900"
-                  >
-                    {link.label}
-                  </NavLink>
-                ))}
+                <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+                  <div>
+                    <p className="dropdown-label text-xs uppercase tracking-[0.3em] text-[#D8CCB5]/70">
+                      Pages
+                    </p>
+                    <h4 className="dropdown-title mt-3 text-xl font-semibold text-[#F5EFE5]">
+                      Explore BrandView India
+                    </h4>
+                    <p className="dropdown-copy mt-2 text-sm text-[#D8CCB5]/70">
+                      Quick links to core pages, pricing, and support.
+                    </p>
+                  </div>
+                  <div className="grid gap-3 text-sm text-[#F5EFE5]">
+                    {dropdownLinks.map((link) => {
+                      const Icon = link.icon;
+                      return (
+                      <NavLink
+                        key={link.href}
+                        to={link.href}
+                        className="dropdown-item flex items-center justify-between rounded-xl border border-[#2C2C2C] bg-[#232323] px-4 py-3 transition hover:border-[#3A3A3A] hover:bg-[#2A2A2A]"
+                      >
+                        <span className="flex items-center gap-3">
+                          <Icon className="dropdown-icon h-4 w-4 text-[#B3A380]" />
+                          {link.label}
+                        </span>
+                        <ArrowRight className="dropdown-arrow h-4 w-4 text-[#B3A380]" />
+                      </NavLink>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -137,8 +190,8 @@ export default function Header() {
           >
             <button
               onClick={() => setIsBlogDropdownOpen(!isBlogDropdownOpen)}
-              className={`flex items-center transition-colors duration-200 ${
-                isBlogDropdownOpen ? "text-primary" : "text-slate-600 hover:text-slate-900"
+              className={`header-link flex items-center transition-colors duration-200 ${
+                isBlogDropdownOpen ? "text-[#B3A380]" : "text-slate-600 hover:text-slate-900"
               }`}
             >
               Blog
@@ -150,19 +203,41 @@ export default function Header() {
             </button>
             {isBlogDropdownOpen && (
               <div
-                className="dropdown-glass absolute top-full left-0 mt-2 w-44 rounded-2xl border border-white/70 py-2 shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
+                className="dropdown-panel absolute top-full left-1/2 mt-4 w-[90vw] max-w-[1100px] -translate-x-1/2 rounded-[24px] border border-secondary/20 px-8 py-7 shadow-[0_30px_70px_rgba(15,23,42,0.18)]"
                 onMouseEnter={openBlogDropdown}
                 onMouseLeave={closeBlogDropdown}
               >
-                {blogLinks.map((link) => (
-                  <NavLink
-                    key={link.href}
-                    to={link.href}
-                    className="block px-4 py-2 text-slate-600 transition-colors hover:bg-white/60 hover:text-slate-900"
-                  >
-                    {link.label}
-                  </NavLink>
-                ))}
+                <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+                  <div>
+                    <p className="dropdown-label text-xs uppercase tracking-[0.3em] text-[#D8CCB5]/70">
+                      Blog
+                    </p>
+                    <h4 className="dropdown-title mt-3 text-xl font-semibold text-[#F5EFE5]">
+                      Latest insights
+                    </h4>
+                    <p className="dropdown-copy mt-2 text-sm text-[#D8CCB5]/70">
+                      Thought leadership, case studies, and design strategy.
+                    </p>
+                  </div>
+                  <div className="grid gap-3 text-sm text-[#F5EFE5]">
+                    {blogLinks.map((link) => {
+                      const Icon = link.icon;
+                      return (
+                      <NavLink
+                        key={link.href}
+                        to={link.href}
+                        className="dropdown-item flex items-center justify-between rounded-xl border border-[#2C2C2C] bg-[#232323] px-4 py-3 transition hover:border-[#3A3A3A] hover:bg-[#2A2A2A]"
+                      >
+                        <span className="flex items-center gap-3">
+                          <Icon className="dropdown-icon h-4 w-4 text-[#B3A380]" />
+                          {link.label}
+                        </span>
+                        <ArrowRight className="dropdown-arrow h-4 w-4 text-[#B3A380]" />
+                      </NavLink>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -170,8 +245,8 @@ export default function Header() {
           <NavLink
             to="/contact"
             className={({ isActive }) =>
-              `transition-colors duration-200 ${
-                isActive ? "text-primary" : "text-slate-600 hover:text-slate-900"
+              `header-link transition-colors duration-200 ${
+                isActive ? "text-[#B3A380]" : "text-slate-600 hover:text-slate-900"
               }`
             }
           >
@@ -179,11 +254,39 @@ export default function Header() {
           </NavLink>
         </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
+            <div className="flex items-center gap-1 rounded-full border border-white/70 bg-white/80 p-1 shadow-sm">
+              <button
+                type="button"
+                onClick={() => setThemeMode("dark")}
+                className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
+                  theme === "dark"
+                    ? "bg-secondary text-secondary-foreground shadow-sm"
+                    : "text-secondary/60 hover:text-secondary"
+                }`}
+                aria-label="Enable dark mode"
+                aria-pressed={theme === "dark"}
+              >
+                <Moon className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setThemeMode("light")}
+                className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
+                  theme === "light"
+                    ? "bg-secondary text-secondary-foreground shadow-sm"
+                    : "text-secondary/60 hover:text-secondary"
+                }`}
+                aria-label="Enable light mode"
+                aria-pressed={theme === "light"}
+              >
+                <Sun className="h-4 w-4" />
+              </button>
+            </div>
             <Link to="/contact">
-            <Button className="rounded-2xl bg-primary px-5 py-2 text-xs font-semibold text-primary-foreground shadow-[0_10px_22px_rgba(0,0,0,0.18)] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-primary/90">
+              <Button className="rounded-2xl bg-secondary px-5 py-2 text-xs font-semibold text-secondary-foreground hover:bg-secondary/90">
                 Start a project
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 text-[#B3A380]" />
               </Button>
             </Link>
           </div>
