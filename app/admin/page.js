@@ -96,7 +96,7 @@ export default function AdminPage() {
               </p>
               <h1 className="text-lg font-semibold">Admin Space</h1>
             </div>
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="h-2 w-2 rounded-full bg-primary" />
           </div>
           <div className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
             <input
@@ -300,7 +300,7 @@ export default function AdminPage() {
                 {["Landing pages", "Brand keywords", "Technical health"].map(
                   (label) => (
                     <div key={label} className="flex items-center gap-3">
-                      <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                      <span className="h-2 w-2 rounded-full bg-primary" />
                       <div>
                         <p className="text-sm font-medium">{label}</p>
                         <p className="text-xs text-slate-400">

@@ -34,7 +34,7 @@ export default function BlogDetailPage() {
     <>
       <section className="pt-28 pb-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 px-6 py-10 sm:px-10 sm:py-12 text-white text-center">
+          <div className="rounded-3xl bg-secondary px-6 py-10 sm:px-10 sm:py-12 text-white text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-white/70">
               {post.author} / {formatDate(post.date)}
             </p>
@@ -164,7 +164,7 @@ export default function BlogDetailPage() {
                       to={`/blog/${recent.slug}`}
                       className="group flex items-start gap-3"
                     >
-                      <span className="text-primary">»</span>
+                      <span className="text-primary">ï¿½</span>
                       <span className="group-hover:text-slate-900">{recent.title}</span>
                     </Link>
                   ))}
@@ -176,14 +176,14 @@ export default function BlogDetailPage() {
                 <div className="mt-4 space-y-3 text-sm text-slate-700">
                   {categories.map((category) => (
                     <div key={category} className="flex items-center gap-2">
-                      <span className="text-primary">›</span>
+                      <span className="text-primary">ï¿½</span>
                       <span>{category}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 px-6 py-6 text-white">
+              <div className="rounded-2xl bg-secondary px-6 py-6 text-white">
                 <h3 className="text-lg font-semibold">Have Any Question?</h3>
                 <p className="mt-2 text-sm text-white/70">
                   We are ready to listen and help craft a creative solution for you.

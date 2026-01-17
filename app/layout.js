@@ -10,7 +10,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: 'Zesty | Creative Agency',
+  title: 'BrandView India | Creative Agency',
   description: 'We craft digital experiences that inspire, engage, and deliver results for ambitious brands.',
 };
 

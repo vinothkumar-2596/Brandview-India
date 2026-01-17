@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 30% 14%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 30% 14%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 30% 14%;
-    --primary: 210 90% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 35% 96%;
-    --secondary-foreground: 222 30% 14%;
-    --muted: 210 35% 96%;
-    --muted-foreground: 220 10% 45%;
-    --accent: 255 70% 62%;
-    --accent-foreground: 0 0% 100%;
+    --background: 38 46% 93%;
+    --foreground: 0 0% 0%;
+    --card: 38 46% 93%;
+    --card-foreground: 0 0% 0%;
+    --popover: 38 46% 93%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 41 31% 78%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 11%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 85%;
+    --muted-foreground: 0 0% 11%;
+    --accent: 41 31% 78%;
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 215 20% 90%;
-    --input: 215 20% 90%;
-    --ring: 210 90% 50%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 41 31% 78%;
     --radius: 0.75rem;
     --chart-1: 210 90% 50%;
     --chart-2: 255 70% 62%;
@@ -39,12 +39,16 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: "Plus Jakarta Sans", sans-serif;
-    background-image:
-      radial-gradient(circle at 15% 10%, rgba(186, 230, 253, 0.55), transparent 45%),
-      radial-gradient(circle at 85% 18%, rgba(191, 219, 254, 0.45), transparent 48%),
-      radial-gradient(circle at 35% 85%, rgba(221, 214, 254, 0.4), transparent 50%),
-      radial-gradient(circle at 85% 88%, rgba(254, 243, 199, 0.35), transparent 55%);
     background-attachment: fixed;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    border: 10px solid rgba(255, 255, 255, 0.9);
+    pointer-events: none;
+    z-index: 60;
   }
   html {
     scroll-behavior: smooth;
@@ -89,10 +93,10 @@
 
 @layer utilities {
 .text-gradient {
-    @apply bg-gradient-to-r from-primary via-sky-400 to-indigo-400 bg-clip-text text-transparent;
+    @apply text-primary;
   }
   .gradient-bg {
-    @apply bg-gradient-to-br from-primary/10 via-sky-200/35 to-violet-200/25;
+    @apply bg-background;
   }
   .glass-effect {
     @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl;
@@ -146,6 +150,89 @@
 
 .reveal-delay-3 {
   transition-delay: 0.3s;
+}
+
+@keyframes heroLineIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSubtitleIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dynamicPhraseIn {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title .hero-line {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.reveal.is-visible .hero-title .hero-line {
+  animation: heroLineIn 0.8s ease forwards;
+}
+
+.reveal.is-visible .hero-line-1 {
+  animation-delay: 0.05s;
+}
+
+.reveal.is-visible .hero-line-2 {
+  animation-delay: 0.18s;
+}
+
+.hero-subtitle {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.reveal.is-visible .hero-subtitle {
+  animation: heroSubtitleIn 0.7s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.dynamic-phrase-wrap {
+  display: block;
+  min-height: 2.6em;
+  line-height: 1.1;
+}
+
+.dynamic-phrase-text {
+  display: inline-block;
+  animation: dynamicPhraseIn 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.dropdown-glass {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.2);
+  backdrop-filter: blur(36px) saturate(1.2);
+  -webkit-backdrop-filter: blur(36px) saturate(1.2);
 }
 
 /* Scrollbar styling */

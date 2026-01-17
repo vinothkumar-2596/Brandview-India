@@ -21,7 +21,7 @@ export default function PricingCard({ plan }) {
       <div className="text-center mb-8">
         <h3 className="text-2xl font-semibold mb-2">{plan.name}</h3>
         <p className="text-muted-foreground mb-4">{plan.tagline}</p>
-        <div className="text-4xl font-bold text-gradient">{plan.price}</div>
+        <div className="text-4xl font-bold text-primary">{plan.price}</div>
       </div>
       <ul className="space-y-4 mb-8">
         {plan.features.map((feature, index) => (

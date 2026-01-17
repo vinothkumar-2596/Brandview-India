@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,44 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isBlogDropdownOpen, setIsBlogDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const dropdownCloseTimer = useRef(null);
+  const blogCloseTimer = useRef(null);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const openDropdown = () => {
+    if (dropdownCloseTimer.current) {
+      clearTimeout(dropdownCloseTimer.current);
+      dropdownCloseTimer.current = null;
+    }
+    setIsDropdownOpen(true);
+  };
+
+  const closeDropdown = () => {
+    dropdownCloseTimer.current = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 120);
+  };
+
+  const openBlogDropdown = () => {
+    if (blogCloseTimer.current) {
+      clearTimeout(blogCloseTimer.current);
+      blogCloseTimer.current = null;
+    }
+    setIsBlogDropdownOpen(true);
+  };
+
+  const closeBlogDropdown = () => {
+    blogCloseTimer.current = setTimeout(() => {
+      setIsBlogDropdownOpen(false);
+    }, 120);
+  };
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -26,20 +64,28 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-100 bg-white">
-      <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-4 sm:px-6">
-        <Link to="/" className="flex items-center">
-          <span className="text-2xl font-bold text-slate-900">Zesty®</span>
-        </Link>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-opacity duration-300 ${
+        isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+      }`}
+    >
+      <div className="mx-auto flex h-28 max-w-[1200px] items-center px-4 sm:px-6 pt-5">
+        <div className="flex w-full items-center justify-between rounded-2xl border border-white/80 bg-white/75 px-5 py-3 backdrop-blur-2xl">
+          <Link to="/" className="flex items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/70 shadow-inner">
+              <span className="h-3 w-3 rounded-full bg-slate-900" />
+            </span>
+            <span className="text-lg font-semibold text-slate-900">BrandView India</span>
+          </Link>
 
-        <nav className="hidden lg:flex items-center space-x-8 text-sm font-medium">
+          <nav className="hidden lg:flex items-center space-x-7 text-sm font-medium">
           {navLinks.map((link) => (
             <NavLink
               key={link.href}
               to={link.href}
               className={({ isActive }) =>
                 `transition-colors duration-200 ${
-                  isActive ? "text-slate-900" : "text-slate-600 hover:text-slate-900"
+                  isActive ? "text-primary" : "text-slate-600 hover:text-slate-900"
                 }`
               }
             >
@@ -47,11 +93,16 @@ export default function Header() {
             </NavLink>
           ))}
 
-          <div className="relative">
+          <div
+            className="relative pt-2 -mt-2"
+            onMouseEnter={openDropdown}
+            onMouseLeave={closeDropdown}
+          >
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              onBlur={() => setTimeout(() => setIsDropdownOpen(false), 150)}
-              className="flex items-center text-slate-600 transition-colors duration-200 hover:text-slate-900"
+              className={`flex items-center transition-colors duration-200 ${
+                isDropdownOpen ? "text-primary" : "text-slate-600 hover:text-slate-900"
+              }`}
             >
               Pages
               <ChevronDown
@@ -61,12 +112,16 @@ export default function Header() {
               />
             </button>
             {isDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-40 rounded-xl border border-slate-200 bg-white py-2 shadow-xl">
+              <div
+                className="dropdown-glass absolute top-full left-0 mt-2 w-40 rounded-2xl border border-white/70 py-2 shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
+                onMouseEnter={openDropdown}
+                onMouseLeave={closeDropdown}
+              >
                 {dropdownLinks.map((link) => (
                   <NavLink
                     key={link.href}
                     to={link.href}
-                    className="block px-4 py-2 text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900"
+                    className="block px-4 py-2 text-slate-600 transition-colors hover:bg-white/60 hover:text-slate-900"
                   >
                     {link.label}
                   </NavLink>
@@ -75,11 +130,16 @@ export default function Header() {
             )}
           </div>
 
-          <div className="relative">
+          <div
+            className="relative pt-2 -mt-2"
+            onMouseEnter={openBlogDropdown}
+            onMouseLeave={closeBlogDropdown}
+          >
             <button
               onClick={() => setIsBlogDropdownOpen(!isBlogDropdownOpen)}
-              onBlur={() => setTimeout(() => setIsBlogDropdownOpen(false), 150)}
-              className="flex items-center text-slate-600 transition-colors duration-200 hover:text-slate-900"
+              className={`flex items-center transition-colors duration-200 ${
+                isBlogDropdownOpen ? "text-primary" : "text-slate-600 hover:text-slate-900"
+              }`}
             >
               Blog
               <ChevronDown
@@ -89,12 +149,16 @@ export default function Header() {
               />
             </button>
             {isBlogDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-44 rounded-xl border border-slate-200 bg-white py-2 shadow-xl">
+              <div
+                className="dropdown-glass absolute top-full left-0 mt-2 w-44 rounded-2xl border border-white/70 py-2 shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
+                onMouseEnter={openBlogDropdown}
+                onMouseLeave={closeBlogDropdown}
+              >
                 {blogLinks.map((link) => (
                   <NavLink
                     key={link.href}
                     to={link.href}
-                    className="block px-4 py-2 text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900"
+                    className="block px-4 py-2 text-slate-600 transition-colors hover:bg-white/60 hover:text-slate-900"
                   >
                     {link.label}
                   </NavLink>
@@ -107,7 +171,7 @@ export default function Header() {
             to="/contact"
             className={({ isActive }) =>
               `transition-colors duration-200 ${
-                isActive ? "text-slate-900" : "text-slate-600 hover:text-slate-900"
+                isActive ? "text-primary" : "text-slate-600 hover:text-slate-900"
               }`
             }
           >
@@ -115,27 +179,28 @@ export default function Header() {
           </NavLink>
         </nav>
 
-        <div className="hidden lg:block">
-          <Link to="/contact">
-            <Button className="rounded-full bg-slate-900 px-6 text-white hover:bg-slate-900/90">
-              Start a project
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
+          <div className="hidden lg:block">
+            <Link to="/contact">
+            <Button className="rounded-2xl bg-primary px-5 py-2 text-xs font-semibold text-primary-foreground shadow-[0_10px_22px_rgba(0,0,0,0.18)] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-primary/90">
+                Start a project
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
 
-        <button
-          className="lg:hidden p-2 text-foreground"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+          <button
+            className="lg:hidden p-2 text-foreground"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-100 bg-white">
-          <div className="px-4 py-6 space-y-4">
+        <div className="lg:hidden mx-auto max-w-[1200px] px-4 sm:px-6">
+          <div className="mt-3 rounded-3xl border border-white/70 bg-white/80 p-6 shadow-[0_18px_40px_rgba(15,23,42,0.12)] backdrop-blur-2xl">
             {navLinks.map((link) => (
               <NavLink
                 key={link.href}
@@ -184,3 +249,4 @@ export default function Header() {
     </header>
   );
 }
+

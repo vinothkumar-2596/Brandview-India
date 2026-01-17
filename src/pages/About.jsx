@@ -45,7 +45,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg" />
+        <div className="absolute inset-0 bg-background" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl">
             <span className="text-primary text-sm font-medium tracking-wider uppercase">
@@ -109,19 +109,19 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-gradient mb-2">200+</div>
+              <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">200+</div>
               <p className="text-muted-foreground">Projects Completed</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-gradient mb-2">50+</div>
+              <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">50+</div>
               <p className="text-muted-foreground">Happy Clients</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-gradient mb-2">15+</div>
+              <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">15+</div>
               <p className="text-muted-foreground">Industry Awards</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-gradient mb-2">10+</div>
+              <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">10+</div>
               <p className="text-muted-foreground">Years Experience</p>
             </div>
           </div>
@@ -175,7 +175,7 @@ export default function AboutPage() {
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <h3 className="text-lg font-semibold">{member.name}</h3>
                 <p className="text-muted-foreground text-sm">{member.role}</p>

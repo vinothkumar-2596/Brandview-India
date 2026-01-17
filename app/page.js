@@ -16,13 +16,13 @@ import { blogPosts } from "@/content/blog";
 const testimonials = [
   {
     quote:
-      "Zesty transformed our brand completely. Their creativity and attention to detail exceeded all expectations. The results speak for themselves.",
+      "BrandView India transformed our brand completely. Their creativity and attention to detail exceeded all expectations. The results speak for themselves.",
     name: "Jennifer Adams",
     role: "CEO, TechStart Inc.",
   },
   {
     quote:
-      "Working with Zesty was a game-changer for our business. They don't just deliver projects, they deliver results that matter.",
+      "Working with BrandView India was a game-changer for our business. They don't just deliver projects, they deliver results that matter.",
     name: "Michael Chen",
     role: "Founder, Verde Fashion",
   },
@@ -81,7 +81,7 @@ export default function HomePage() {
           <div className="flex flex-col gap-12">
             <div className="flex flex-col items-center text-center">
               <h1 className="mt-6 text-5xl font-semibold text-slate-900 sm:text-6xl lg:text-[96px] lg:leading-[1.05]">
-                Zesty® Studio
+                BrandView India
               </h1>
               <p className="mt-6 max-w-2xl text-base text-slate-600 sm:text-lg">
                 We build premium brand experiences, digital platforms, and campaigns that
@@ -89,7 +89,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="rounded-[36px] bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 px-6 py-10 text-white shadow-2xl sm:px-10 sm:py-12">
+            <div className="rounded-[36px] bg-secondary px-6 py-10 text-white shadow-2xl sm:px-10 sm:py-12">
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {["Branding", "Web Design", "Digital Marketing", "Social Media"].map((label) => (
                   <span
@@ -103,7 +103,7 @@ export default function HomePage() {
               <div className="mt-12 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div>
                   <p className="text-xs uppercase tracking-[0.3em] text-white/70">
-                    Welcome to Zesty
+                    Welcome to BrandView India
                   </p>
                   <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
                     We Build Brands That
@@ -131,7 +131,7 @@ export default function HomePage() {
                   We Create Strategic, Elegant Digital Experiences
                 </h3>
                 <p className="mt-4 text-slate-600">
-                  At Zesty Studio, we focus on transforming ideas into premium digital
+                  At BrandView India, we focus on transforming ideas into premium digital
                   experiences. Our work combines clarity, storytelling, and performance.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-4">
@@ -216,7 +216,7 @@ export default function HomePage() {
 
       <section
         id="services"
-        className="py-16 sm:py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 text-white"
+        className="py-16 sm:py-20 bg-secondary text-white"
       >
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="text-center">
@@ -319,7 +319,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 text-white">
+      <section className="py-16 sm:py-20 bg-secondary text-white">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-white/60">

@@ -30,7 +30,7 @@ export default function BlogPage() {
   return (
     <>
       <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg" />
+        <div className="absolute inset-0 bg-background" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl mx-auto text-center">
             <span className="text-primary text-sm font-medium tracking-wider uppercase">
@@ -43,13 +43,13 @@ export default function BlogPage() {
               Stay updated with the latest trends, tips, and insights from our team of experts.
             </p>
             <div className="relative max-w-md mx-auto">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-primary" />
               <Input
                 type="search"
                 placeholder="Search articles..."
                 value={searchQuery}
                 onChange={handleSearch}
-                className="pl-12 py-6 bg-secondary border-white/10 rounded-full text-lg"
+                className="pl-12 py-6 bg-secondary border border-primary/30 rounded-full text-lg text-white placeholder:text-white/50 focus-visible:border-primary focus-visible:ring-primary"
               />
             </div>
           </div>

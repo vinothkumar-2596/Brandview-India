@@ -24,7 +24,7 @@ export default function WorksPage() {
     <>
       {/* Hero */}
       <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg" />
+        <div className="absolute inset-0 bg-background" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl mx-auto text-center">
             <span className="text-primary text-sm font-medium tracking-wider uppercase">Our Works</span>

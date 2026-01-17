@@ -34,7 +34,7 @@ export default function Header() {
       <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-4 sm:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-slate-900">Zesty®</span>
+            <span className="text-2xl font-bold text-slate-900">BrandView India</span>
           </Link>
 
           {/* Desktop Navigation */}

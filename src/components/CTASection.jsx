@@ -4,10 +4,8 @@ import { ArrowRight } from "lucide-react";
 
 export default function CTASection() {
   return (
-    <section className="py-16 sm:py-20 relative overflow-hidden">
-      <div className="absolute inset-0 gradient-bg" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 relative">
+    <section className="py-16 sm:py-20">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6">
             Ready to Transform Your Brand?

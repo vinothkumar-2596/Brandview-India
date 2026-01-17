@@ -7,11 +7,11 @@ import { Home, ArrowLeft } from 'lucide-react';
 export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <div className="absolute inset-0 gradient-bg" />
+      <div className="absolute inset-0 bg-background" />
       <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />
       
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-        <h1 className="text-[150px] sm:text-[200px] font-bold text-gradient leading-none mb-4">
+        <h1 className="text-[150px] sm:text-[200px] font-bold text-primary leading-none mb-4">
           404
         </h1>
         

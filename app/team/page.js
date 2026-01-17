@@ -9,12 +9,12 @@ export default function TeamPage() {
     <>
       {/* Hero */}
       <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg" />
+        <div className="absolute inset-0 bg-background" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl mx-auto text-center">
             <span className="text-primary text-sm font-medium tracking-wider uppercase">Our Team</span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight mt-4 mb-6">
-              Meet the Minds Behind Zesty
+              Meet the Minds Behind BrandView India
             </h1>
             <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
               A talented team of designers, developers, and strategists united by a passion for creating exceptional digital experiences.
@@ -36,7 +36,7 @@ export default function TeamPage() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="flex justify-center space-x-4">
                       {member.socials.linkedin && (

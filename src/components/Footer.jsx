@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Mail,
   MapPin,
@@ -37,7 +37,7 @@ export default function Footer() {
 
   return (
     <footer className="px-4 sm:px-6 lg:px-8 pb-16">
-      <div className="w-full min-h-[640px] rounded-[40px] bg-gradient-to-br from-blue-950 via-blue-800 to-blue-600 text-white shadow-2xl overflow-hidden">
+      <div className="mx-auto w-full max-w-[1280px] min-h-[640px] rounded-[40px] bg-secondary text-secondary-foreground shadow-2xl overflow-hidden">
         <div className="px-10 sm:px-14 lg:px-20 pt-20 pb-16 border-b border-white/10">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
@@ -45,11 +45,11 @@ export default function Footer() {
                 Start a project
               </p>
               <h2 className="mt-4 text-4xl sm:text-5xl font-semibold">
-                Start Your Project With Zesty Studio
+                Start Your Project With BrandView India
               </h2>
               <Dialog>
                 <DialogTrigger asChild>
-                  <button className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 shadow-md transition hover:bg-white/90">
+                  <button className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-md transition hover:bg-primary/90">
                     Contact Us
                     <ArrowRight className="h-4 w-4" />
                   </button>
@@ -88,13 +88,13 @@ export default function Footer() {
               </Dialog>
             </div>
 
-            <div className="rounded-2xl bg-white/10 p-5">
+            <div className="rounded-2xl border border-white/10 bg-white/10 p-5 shadow-[0_18px_40px_rgba(0,0,0,0.35)] backdrop-blur-2xl">
               <p className="text-base font-semibold">Subscribe Our Newsletter</p>
               <p className="mt-2 text-sm text-white/60">
                 Monthly insights on branding, design, and growth.
               </p>
               <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-                <div className="flex-1 rounded-full bg-white/15 px-4 py-3 text-xs text-white/70">
+                <div className="flex-1 rounded-full border border-white/0 bg-white/3 px-4 py-3 text-xs text-white/70 backdrop-blur-xl">
                   Enter your email
                 </div>
                 <Dialog>
@@ -134,10 +134,10 @@ export default function Footer() {
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-6">
               <Link to="/" className="inline-flex items-center gap-2 text-2xl font-semibold">
-                ZestyÂ®
+                BrandView India
               </Link>
               <p className="text-sm text-white/70 leading-relaxed">
-                At Zesty, our focus is to craft intuitive, engaging, and user-centered digital
+                At BrandView India, our focus is to craft intuitive, engaging, and user-centered digital
                 experiences.
               </p>
               <div className="flex items-center gap-3 text-white/70">
@@ -211,7 +211,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-white/60">
-            <p>Copyright 2025 Zesty Studio. All rights reserved.</p>
+            <p>Copyright 2025 BrandView India. All rights reserved.</p>
             <div className="flex items-center gap-6">
               <a href="#" className="hover:text-white transition-colors">
                 Privacy Policy

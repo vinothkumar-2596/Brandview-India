@@ -53,7 +53,7 @@ export default function ComingSoonPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <div className="absolute inset-0 gradient-bg" />
+      <div className="absolute inset-0 bg-background" />
       <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2" />
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
@@ -62,7 +62,7 @@ export default function ComingSoonPage() {
         </div>
 
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
-          Something Amazing is <span className="text-gradient">Coming Soon</span>
+          Something Amazing is <span className="text-primary">Coming Soon</span>
         </h1>
 
         <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed mb-12">
@@ -78,7 +78,7 @@ export default function ComingSoonPage() {
             { value: countdown.seconds, label: "Seconds" },
           ].map((item) => (
             <div key={item.label} className="p-4 sm:p-6 rounded-2xl border border-white/10 bg-card">
-              <div className="text-3xl sm:text-4xl font-bold text-gradient">
+              <div className="text-3xl sm:text-4xl font-bold text-primary">
                 {String(item.value).padStart(2, "0")}
               </div>
               <div className="text-muted-foreground text-sm mt-1">{item.label}</div>

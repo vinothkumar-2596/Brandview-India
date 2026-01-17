@@ -27,7 +27,7 @@ export default function WorkDetailPage({ params }) {
     <>
       {/* Hero */}
       <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg" />
+        <div className="absolute inset-0 bg-background" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <Link
             href="/works"
@@ -122,10 +122,10 @@ export default function WorkDetailPage({ params }) {
                 />
               </div>
               <div className="aspect-[4/3] relative rounded-xl overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 via-purple-500/10 to-pink-500/5" />
+                <div className="w-full h-full bg-accent/40" />
               </div>
               <div className="aspect-[4/3] relative rounded-xl overflow-hidden col-span-2">
-                <div className="w-full h-full bg-gradient-to-r from-primary/10 via-purple-500/20 to-pink-500/10" />
+                <div className="w-full h-full bg-accent/30" />
               </div>
             </div>
           </div>

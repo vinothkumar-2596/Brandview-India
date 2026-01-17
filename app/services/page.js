@@ -63,7 +63,7 @@ export default function ServicesPage() {
     <>
       {/* Hero */}
       <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg" />
+        <div className="absolute inset-0 bg-background" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl mx-auto text-center">
             <span className="text-primary text-sm font-medium tracking-wider uppercase">Our Services</span>
@@ -108,7 +108,7 @@ export default function ServicesPage() {
                     </div>
                   </div>
                   <div className={`relative ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                    <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-primary/20 via-purple-500/10 to-pink-500/5 border border-white/10 flex items-center justify-center">
+                    <div className="aspect-[4/3] rounded-2xl bg-accent/40 border border-white/10 flex items-center justify-center">
                       <Icon className="h-32 w-32 text-primary/30" />
                     </div>
                   </div>

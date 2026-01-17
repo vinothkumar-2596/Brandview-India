@@ -1,7 +1,6 @@
-﻿import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CTASection from "@/components/CTASection";
-import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -25,7 +24,7 @@ const testimonialVideo = {
 
 const featuredTestimonial = {
   quote:
-    "Working with Zesty was a game-changer for our brand. Their creativity and strategic insights transformed our vision into a campaign that truly resonated with our audience. They listened, understood, and delivered beyond expectations.",
+    "Working with BrandView India was a game-changer for our brand. Their creativity and strategic insights transformed our vision into a campaign that truly resonated with our audience. They listened, understood, and delivered beyond expectations.",
   name: "Max Palmer",
   role: "Marketing Director",
   avatar:
@@ -51,21 +50,12 @@ const testimonialCards = [
   },
   {
     quote:
-      "Working with Zesty was a turning point. They reimagined how we tell our story, and every step felt intentional and collaborative.",
+      "Working with BrandView India was a turning point. They reimagined how we tell our story, and every step felt intentional and collaborative.",
     name: "Lillian Austin",
     role: "Creative Lead",
     avatar:
       "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop&crop=faces",
   },
-];
-
-const clientLogos = [
-  "Acme Corp",
-  "TechVista",
-  "Nexus Labs",
-  "Quantum AI",
-  "Vertex Inc",
-  "Prism Co",
 ];
 
 const processSteps = [
@@ -123,6 +113,20 @@ const homeServices = [
 ];
 
 export default function Home() {
+  const dynamicPhrases = [
+    "Winning hearts and awards",
+    "Curating unforgettable brand experiences",
+    "Designing experiences that truly connect",
+  ];
+  const [activePhrase, setActivePhrase] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActivePhrase((prev) => (prev + 1) % dynamicPhrases.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [dynamicPhrases.length]);
+
   useEffect(() => {
     const nodes = document.querySelectorAll("[data-reveal]");
     if (!nodes.length) return undefined;
@@ -144,59 +148,24 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
   return (
-    <>
-      <section id="home" className="bg-white pb-16 pt-28 sm:pb-20 sm:pt-32">
+    <div className="bg-[#f7f3ef]">
+      <section id="home" className="pb-24 pt-28 sm:pb-28 sm:pt-32">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="flex flex-col gap-12">
-            <div className="flex flex-col items-center text-center reveal" data-reveal>
-              <h1 className="mt-6 text-5xl font-semibold text-slate-900 sm:text-6xl lg:text-[112px] lg:leading-[1]">
-                Zesty® Studio
+            <div className="flex flex-col items-center text-center reveal mt-12 mb-32" data-reveal>
+              <h1 className="hero-title mt-6 max-w-5xl text-4xl font-semibold text-slate-900 tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1]">
+                <span className="hero-line hero-line-1 block">
+                  We're a Global Branding Design Agency Curating Experiences That
+                </span>
+                <span className="hero-line hero-line-2 dynamic-phrase-wrap block">
+                  <span
+                    key={activePhrase}
+                    className="dynamic-phrase-text text-[#C4B38D] font-bold"
+                  >
+                    {dynamicPhrases[activePhrase]}
+                  </span>
+                </span>
               </h1>
-              <p className="mt-6 max-w-2xl text-base text-slate-600 sm:text-lg">
-                We build premium brand experiences, digital platforms, and campaigns that
-                connect ambitious brands with their audience.
-              </p>
-            </div>
-
-            <div className="mx-auto w-full max-w-[1180px] reveal reveal-delay-1" data-reveal>
-              <div className="relative overflow-hidden rounded-[36px] bg-gradient-to-br from-blue-950 via-blue-900 to-blue-600 px-12 py-12 text-white shadow-2xl sm:px-14 sm:py-14 min-h-[320px]">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.45)_0%,_rgba(0,0,0,0)_55%)]" />
-                <div className="pointer-events-none absolute inset-0 opacity-70 [background:radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.35),transparent_35%),radial-gradient(circle_at_85%_30%,rgba(37,99,235,0.55),transparent_40%)]" />
-                <div className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                  {["Branding", "Web Design", "Digital Marketing", "Social Media"].map((label) => (
-                    <span
-                      key={label}
-                      className="flex h-8 w-full items-center justify-center rounded-full border border-white/25 bg-white/5 px-6 text-[11px] font-medium tracking-wide text-white/80"
-                    >
-                      {label}
-                    </span>
-                  ))}
-                </div>
-                <div className="relative mt-12 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                  <div className="max-w-lg">
-                    <p className="text-[11px] uppercase tracking-[0.4em] text-white/70">
-                      Welcome to Zesty
-                    </p>
-                    <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-                      We Build Brands That
-                      <span className="block">Break the Mold.</span>
-                    </h2>
-                  </div>
-                  <Link to="/contact">
-                    <Button className="rounded-full bg-white px-7 py-2.5 text-sm font-semibold text-slate-900 hover:bg-white/90">
-                      Start a Project
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                </div>
-                <div className="relative mt-10 flex flex-wrap items-center gap-6 text-xs tracking-[0.2em] text-white/70">
-                  {clientLogos.map((logo) => (
-                    <span key={logo} className="uppercase">
-                      {logo}
-                    </span>
-                  ))}
-                </div>
-              </div>
             </div>
 
             <div id="about" className="grid gap-8 lg:grid-cols-[1.2fr_1fr] items-center reveal reveal-delay-1" data-reveal>
@@ -206,7 +175,7 @@ export default function Home() {
                   We Create Strategic, Elegant Digital Experiences
                 </h3>
                 <p className="mt-4 text-slate-600">
-                  At Zesty Studio, we focus on transforming ideas into premium digital
+                  At BrandView India, we focus on transforming ideas into premium digital
                   experiences. Our work combines clarity, storytelling, and performance.
                 </p>
                 <Link
@@ -368,7 +337,7 @@ export default function Home() {
 
       <section
         id="services"
-        className="py-20 sm:py-28 bg-gradient-to-br from-slate-950 via-blue-900 to-blue-600 text-white"
+        className="py-20 sm:py-28 bg-[#0b1220] text-white"
       >
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="text-center reveal" data-reveal>
@@ -418,7 +387,7 @@ export default function Home() {
       <section className="py-16 sm:py-20">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] items-center">
-            <div className="rounded-3xl border border-slate-100 bg-white shadow-sm p-8">
+            <div className="rounded-[28px] border border-white/80 bg-white/85 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl">
               <h3 className="text-2xl font-semibold text-slate-900">
                 Why Brands Trust Us
               </h3>
@@ -439,7 +408,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="rounded-3xl bg-slate-900 text-white p-8">
+            <div className="rounded-[28px] bg-[#0b1220] text-white p-8 shadow-[0_24px_60px_rgba(15,23,42,0.18)]">
               <div className="flex items-center gap-3">
                 <Trophy className="h-6 w-6 text-white/70" />
                 <h4 className="text-lg font-semibold">Award-Winning Work</h4>
@@ -477,7 +446,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-24 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-950 text-white">
+      <section className="py-20 sm:py-24 bg-primary text-primary-foreground">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
           <div className="text-center reveal" data-reveal>
             <p className="text-xs uppercase tracking-[0.32em] text-white/70">
@@ -534,7 +503,7 @@ export default function Home() {
                 className="h-full w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
+              <div className="absolute inset-0 bg-secondary/70" />
               <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-white">
                 <p className="text-lg font-semibold">{testimonialVideo.title}</p>
                 <button
@@ -547,7 +516,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 p-8 text-white shadow-sm reveal" data-reveal>
+            <div className="rounded-3xl bg-secondary p-8 text-white shadow-sm reveal" data-reveal>
               <p className="text-base sm:text-lg leading-relaxed">
                 "{featuredTestimonial.quote}"
               </p>
@@ -592,7 +561,7 @@ export default function Home() {
                       <p className="text-xs text-slate-500">{testimonial.role}</p>
                     </div>
                   </div>
-                  <span className="text-3xl font-semibold text-blue-600">"</span>
+                  <span className="text-3xl font-semibold text-primary">"</span>
                 </div>
               </div>
             ))}
@@ -654,7 +623,7 @@ export default function Home() {
       <section id="contact">
         <CTASection />
       </section>
-    </>
+    </div>
   );
 }
 
