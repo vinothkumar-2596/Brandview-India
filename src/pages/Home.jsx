@@ -187,7 +187,7 @@ export default function Home() {
                 <span className="hero-line hero-line-1 block">
                   We're a Global Branding Design Agency Curating Experiences That
                 </span>
-                <span className="hero-line hero-line-2 dynamic-phrase-wrap block mt-1">
+                <span className="hero-line hero-line-2 dynamic-phrase-wrap block mt-2">
                   <span
                     key={activePhrase}
                     className="dynamic-phrase-text text-[#B3A380] font-semibold"

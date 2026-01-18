@@ -255,36 +255,36 @@ export default function Header() {
         </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <div className="flex items-center gap-1 rounded-full border border-white/70 bg-white/80 p-1 shadow-sm">
+            <div className="flex h-9 items-center gap-2 rounded-full border border-white/60 bg-white/90 px-2 shadow-[0_6px_18px_rgba(15,23,42,0.08)] transition-shadow duration-300 hover:shadow-[0_10px_24px_rgba(15,23,42,0.12)]">
               <button
                 type="button"
                 onClick={() => setThemeMode("dark")}
-                className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
+                className={`flex h-7 w-7 items-center justify-center rounded-full transition duration-200 ease-out hover:scale-105 active:scale-95 ${
                   theme === "dark"
-                    ? "bg-secondary text-secondary-foreground shadow-sm"
-                    : "text-secondary/60 hover:text-secondary"
+                    ? "bg-[#B3A380] text-secondary shadow-sm"
+                    : "text-secondary/50 hover:text-secondary"
                 }`}
                 aria-label="Enable dark mode"
                 aria-pressed={theme === "dark"}
               >
-                <Moon className="h-4 w-4" />
+                <Moon className="h-3.5 w-3.5" />
               </button>
               <button
                 type="button"
                 onClick={() => setThemeMode("light")}
-                className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
+                className={`flex h-7 w-7 items-center justify-center rounded-full transition duration-200 ease-out hover:scale-105 active:scale-95 ${
                   theme === "light"
-                    ? "bg-secondary text-secondary-foreground shadow-sm"
-                    : "text-secondary/60 hover:text-secondary"
+                    ? "bg-[#B3A380] text-secondary shadow-sm"
+                    : "text-secondary/50 hover:text-secondary"
                 }`}
                 aria-label="Enable light mode"
                 aria-pressed={theme === "light"}
               >
-                <Sun className="h-4 w-4" />
+                <Sun className="h-3.5 w-3.5" />
               </button>
             </div>
             <Link to="/contact">
-              <Button className="rounded-2xl bg-secondary px-5 py-2 text-xs font-semibold text-secondary-foreground hover:bg-secondary/90">
+              <Button className="h-9 rounded-2xl bg-secondary px-5 text-xs font-semibold text-secondary-foreground hover:bg-secondary/90">
                 Start a project
                 <ArrowRight className="ml-2 h-4 w-4 text-[#B3A380]" />
               </Button>

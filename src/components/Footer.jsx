@@ -99,7 +99,7 @@ export default function Footer() {
                 </div>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="rounded-full bg-white px-6 py-3 text-xs font-semibold text-slate-900">
+                    <button className="rounded-full bg-primary px-6 py-3 text-xs font-semibold text-primary-foreground">
                       Subscribe
                     </button>
                   </DialogTrigger>
